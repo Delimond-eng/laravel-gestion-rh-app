@@ -17,4 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+//Route:: Pour naviguer à la page Tableau de bord
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+
+//Route::Pour naviguer à la page de creation agent
+Route::get('/agents-create', [App\Http\Controllers\AgentController::class, 'navigateToCreatePage'])->name('agents-create');

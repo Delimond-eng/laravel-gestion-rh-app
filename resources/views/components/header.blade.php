@@ -9,12 +9,12 @@
             <div class="header-element">
                 <div class="horizontal-logo">
                     <a href="index-2.html" class="header-logo">
-                        <img src="assets/images/brand-logos/desktop-logo.png" alt="logo" class="desktop-logo">
-                        <img src="assets/images/brand-logos/toggle-logo.png" alt="logo" class="toggle-logo">
-                        <img src="assets/images/brand-logos/desktop-dark.png" alt="logo" class="desktop-dark">
-                        <img src="assets/images/brand-logos/toggle-dark.png" alt="logo" class="toggle-dark">
-                        <img src="assets/images/brand-logos/desktop-white.png" alt="logo" class="desktop-white">
-                        <img src="assets/images/brand-logos/toggle-white.png" alt="logo" class="toggle-white">
+                        <img src="assets/images/brand-logos/logo-02.png" alt="logo" class="desktop-logo">
+                        <img src="assets/images/brand-logos/logo-02.png" alt="logo" class="toggle-logo">
+                        <img src="assets/images/brand-logos/logo-02.png" alt="logo" class="desktop-dark">
+                        <img src="assets/images/brand-logos/logo-02.png" alt="logo" class="toggle-dark">
+                        <img src="assets/images/brand-logos/logo-02.png" alt="logo" class="desktop-white">
+                        <img src="assets/images/brand-logos/logo-02.png" alt="logo" class="toggle-white">
                     </a>
                 </div>
             </div>
@@ -61,7 +61,7 @@
                 </a>
                 <!-- End::header-link|dropdown-toggle -->
                 <ul class="main-header-dropdown dropdown-menu pt-0 overflow-hidden header-profile-dropdown dropdown-menu-end" aria-labelledby="mainHeaderProfile">
-                    <li><a class="dropdown-item d-flex" href="profile.html"><i class="ti ti-user-circle fs-18 me-2 op-7"></i>Profile</a></li>
+                    <li><a class="dropdown-item d-flex" href="#"><i class="ti ti-user-circle fs-18 me-2 op-7"></i>Profile</a></li>
                     <form id="logout-form" method="POST" action="{{ route('logout') }}" class="d-none">
                         @csrf
                         <button type="submit">Logout</button>

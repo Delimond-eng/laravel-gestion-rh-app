@@ -4,15 +4,20 @@
     <div class="container">
     <div class="row justify-content-center align-items-center authentication authentication-basic h-100">
         <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-6 col-sm-8 col-12">
-            <div class="my-5 d-flex justify-content-center">
-                <a href="index-2.html">
+            <div class="my-2 d-flex justify-content-center">
+                <a href="javascript:void(0)">
+
+                    <h1 class="text-primary text-uppercase fs-2 desktop-logo fw-bold">Gestion <span class="text-dark">RH</span></h1>
+                    <h1 class="text-primary text-uppercase fs-2 desktop-dark fw-bold">Gestion <span class="text-white">RH</span></h1>
+                    <!--
                     <img src="assets/images/brand-logos/logo-02.png" alt="logo" class="desktop-logo">
                     <img src="assets/images/brand-logos/logo-02.png" alt="logo" class="desktop-dark">
+                    -->
                 </a>
             </div>
             <div class="card custom-card">
                 <div class="card-body p-5">
-                    <p class="h5 fw-semibold mb-2 text-center">Connexion</p>
+                    <p class="h5 fw-semibold mb-2 text-center text-uppercase">Connexion</p>
                     <p class="mb-4 text-muted op-7 fw-normal text-center">Entrez vos identifiants pour vous connecter !</p>
                     <form method="POST" action="{{ route('login') }}" class="row gy-3">
 

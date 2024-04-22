@@ -12,8 +12,8 @@
             <div class="ms-md-1 ms-0">
                 <nav>
                     <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="javascript:void(0);">Menu</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Création agents</li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">Agents</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Création</li>
                     </ol>
                 </nav>
             </div>
@@ -29,7 +29,7 @@
                             Veuillez saisir les infos requises pour créer un agent
                         </div>
                         <div class="prism-toggle">
-                            <button class="btn btn-sm btn-primary-light" type="button">Voir liste des agents<i class="ri-arrow-drop-right-line ms-2 d-inline-block align-middle"></i></button>
+                            <a href="{{url('/agents')}}" class="btn btn-sm btn-primary-light" type="button">Voir liste des agents<i class="ri-arrow-drop-right-line ms-2 d-inline-block align-middle"></i></a>
                         </div>
                     </div>
                     <div class="card-body">

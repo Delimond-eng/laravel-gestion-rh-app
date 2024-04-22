@@ -9,12 +9,12 @@
             <div class="header-element">
                 <div class="horizontal-logo">
                     <a href="index-2.html" class="header-logo">
-                        <img src="assets/images/brand-logos/logo-02.png" alt="logo" class="desktop-logo">
+                        <!--<img src="assets/images/brand-logos/logo-02.png" alt="logo" class="desktop-logo">
                         <img src="assets/images/brand-logos/logo-02.png" alt="logo" class="toggle-logo">
                         <img src="assets/images/brand-logos/logo-02.png" alt="logo" class="desktop-dark">
                         <img src="assets/images/brand-logos/logo-02.png" alt="logo" class="toggle-dark">
                         <img src="assets/images/brand-logos/logo-02.png" alt="logo" class="desktop-white">
-                        <img src="assets/images/brand-logos/logo-02.png" alt="logo" class="toggle-white">
+                        <img src="assets/images/brand-logos/logo-02.png" alt="logo" class="toggle-white"> -->
                     </a>
                 </div>
             </div>

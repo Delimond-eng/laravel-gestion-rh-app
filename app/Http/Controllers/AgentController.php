@@ -18,4 +18,15 @@ class AgentController extends Controller
             "title"=>"Création agents"
         ]);
     }
+
+    /**
+     * Affichage de la liste des agents
+     * @return Renderable
+    */
+    public function showList() : Renderable
+    {
+        return view('agent_liste', [
+            "title"=>"Liste des agents"
+        ]);
+    }
 }

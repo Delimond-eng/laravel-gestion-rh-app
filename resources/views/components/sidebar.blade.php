@@ -2,19 +2,21 @@
     <!-- Start::main-sidebar-header -->
     <div class="main-sidebar-header">
         <a href="index-2.html" class="header-logo">
-            <img src="assets/images/brand-logos/logo-02.png" alt="logo" class="desktop-logo">
-            <img src="assets/images/brand-logos/logo-02.png" alt="logo" class="toggle-logo">
-            <img src="assets/images/brand-logos/logo-02.png" alt="logo" class="desktop-dark">
+            <!--<img src="assets/images/brand-logos/desktop-logo.png" alt="logo" class="desktop-logo">
+            <img src="assets/images/brand-logos/toggle-logo.png" alt="logo" class="toggle-logo">
+            <img src="assets/images/brand-logos/desktop-dark.png" alt="logo" class="desktop-dark">
             <img src="assets/images/brand-logos/toggle-dark.png" alt="logo" class="toggle-dark">
-            <img src="assets/images/brand-logos/logo-02.png" alt="logo" class="desktop-white">
-            <img src="assets/images/brand-logos/logo-02.png" alt="logo" class="toggle-white">
+            <img src="assets/images/brand-logos/desktop-white.png" alt="logo" class="desktop-white">
+            <img src="assets/images/brand-logos/toggle-white.png" alt="logo" class="toggle-white">
+            -->
+            <h1 class="desktop-dark text-primary text-uppercase fs-5 fw-bold">Gestion <span class="text-white">RH</span></h1>
+            <h1 class="toggle-dark text-primary fs-5 fw-bold">RH</h1>
         </a>
     </div>
     <!-- End::main-sidebar-header -->
 
     <!-- Start::main-sidebar -->
     <div class="main-sidebar" id="sidebar-scroll">
-
         <!-- Start::nav -->
         <nav class="main-menu-container nav nav-pills flex-column sub-open">
             <div class="slide-left" id="slide-left">
@@ -46,7 +48,7 @@
                             <a href="{{url('/agents-create')}}" class="side-menu__item">Création agents</a>
                         </li>
                         <li class="slide">
-                            <a href="aboutus.html" class="side-menu__item">Liste des agents</a>
+                            <a href="{{url('/agents')}}" class="side-menu__item">Liste des agents</a>
                         </li>
 
                     </ul>
@@ -132,13 +134,13 @@
                                 <i class="fe fe-chevron-right side-menu__angle"></i></a>
                             <ul class="slide-menu child2">
                                 <li class="slide">
-                                    <a href="javascript:void(0);" class="side-menu__item">Provinces</a>
+                                    <a href="{{url('/provinces')}}" class="side-menu__item">Provinces</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="javascript:void(0);" class="side-menu__item">Ministères</a>
+                                    <a href="{{url('/ministeres')}}" class="side-menu__item">Ministères</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="javascript:void(0);" class="side-menu__item">Sécretariats</a>
+                                    <a href="{{url('/secretariats')}}" class="side-menu__item">Sécretariats</a>
                                 </li>
                                 <li class="slide">
                                     <a href="javascript:void(0);" class="side-menu__item">Directions</a>

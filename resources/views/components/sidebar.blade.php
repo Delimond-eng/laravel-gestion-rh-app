@@ -167,6 +167,9 @@
                                     <a href="javascript:void(0);" class="side-menu__item">Horaires de travail</a>
                                 </li>
                                 <li class="slide">
+                                    <a href="javascript:void(0);" class="side-menu__item">Equipes</a>
+                                </li>
+                                <li class="slide">
                                     <a href="javascript:void(0);" class="side-menu__item">Rotations</a>
                                 </li>
                                 <li class="slide">

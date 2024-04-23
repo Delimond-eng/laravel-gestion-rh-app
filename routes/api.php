@@ -53,6 +53,7 @@ Route::get('/province.all', function (){
     $provinces = \App\Models\Province::all();
     return response()->json([
         "status" => "success",
+        "message"=>"is successfully !",
         "provinces" => $provinces
     ]);
 });

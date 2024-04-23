@@ -27,8 +27,8 @@
                             <input id="email" type="email" class="form-control form-control-lg @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required placeholder="Adresse email" autocomplete="email" autofocus>
                             @error('password')
                             <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <strong>{{ $message }}</strong>
+                            </span>
                             @enderror
                         </div>
                         <div class="col-xl-12 mb-1">

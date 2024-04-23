@@ -143,19 +143,19 @@
                                     <a href="{{url('/secretariats')}}" class="side-menu__item">Sécretariats</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="javascript:void(0);" class="side-menu__item">Directions</a>
+                                    <a href="{{url('/directions')}}" class="side-menu__item">Directions</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="javascript:void(0);" class="side-menu__item">Divisions</a>
+                                    <a href="{{ url('/divisions') }}" class="side-menu__item">Divisions</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="javascript:void(0);" class="side-menu__item">Bureaux</a>
+                                    <a href="{{ url('/bureaux') }}" class="side-menu__item">Bureaux</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="javascript:void(0);" class="side-menu__item">Grades</a>
+                                    <a href="{{ url('/grades') }}" class="side-menu__item">Grades</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="javascript:void(0);" class="side-menu__item">Fonctions</a>
+                                    <a href="{{ url('/fonctions') }}" class="side-menu__item">Fonctions</a>
                                 </li>
                             </ul>
                         </li>

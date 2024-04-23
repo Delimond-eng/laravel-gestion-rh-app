@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('province_libelle')->unique();
             $table->string('province_status')->default('actif');
-            $table->unsignedBigInteger('user_id')->unique();
+            $table->unsignedBigInteger('user_id');
             $table->timestamp('date_creation')->useCurrent();
         });
     }

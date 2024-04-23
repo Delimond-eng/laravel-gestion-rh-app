@@ -40,4 +40,57 @@ class ConfigController extends Controller
             "title"=>"Paramètre&secretariats"
         ]);
     }
+
+
+    /**
+     * Afficher la page de configuration Direction
+     * @return Renderable
+    */
+    public function configDirection():Renderable{
+        return view('config/directions', [
+            "title"=>"Paramètre&Directions"
+        ]);
+    }
+
+
+    /**
+     * Afficher la page de configuration de la divisions
+     * @return Renderable
+     */
+    public function configDivision():Renderable{
+        return view('config/divisions', [
+            "title"=>"Paramètre&Divisions"
+        ]);
+    }
+
+
+    /**
+     * Afficher la page de configuration du bureau
+     * @return Renderable
+     */
+    public function configBureau():Renderable{
+        return view('config/bureau', [
+            "title"=>"Paramètre&Bureaux"
+        ]);
+    }
+
+    /**
+     * Afficher la page de configuration du grade
+     * @return Renderable
+     */
+    public function configGrade():Renderable{
+        return view('config/grades', [
+            "title"=>"Paramètre&Grades"
+        ]);
+    }
+
+    /**
+     * Afficher la page de configuration de la fonction
+     * @return Renderable
+     */
+    public function configFonction():Renderable{
+        return view('config/fonctions', [
+            "title"=>"Paramètre&Fonctions"
+        ]);
+    }
 }

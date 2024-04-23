@@ -9,12 +9,12 @@
                 <span class="fs-semibold text-muted">Le Tableau de bord !</span>
             </div>
             <div class="btn-list mt-md-0 mt-2">
-                <button type="button" class="btn btn-primary btn-wave">
-                    <i class="ri-filter-3-fill me-2 align-middle d-inline-block"></i>Filters
-                </button>
-                <button type="button" class="btn btn-outline-secondary btn-wave">
-                    <i class="ri-upload-cloud-line me-2 align-middle d-inline-block"></i>Export
-                </button>
+                <select class="form-control">
+                    <option value="Tout">Tout</option>
+                    <option value="Tout">Direction</option>
+                    <option value="Tout">Province</option>
+                    <option value="Tout">Secrétariat</option>
+                </select>
             </div>
         </div>
         <!-- End::page-header -->

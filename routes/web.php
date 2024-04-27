@@ -52,3 +52,7 @@ Route::get('/grades', [ConfigController::class, 'configGrade'])->name('config.gr
 
 //Route:: de configuration fonction
 Route::get('/fonctions', [ConfigController::class, 'configFonction'])->name('config.fonctions');
+
+
+//Route:: de configuration Horaire
+Route::get('/horaires', [ConfigController::class, 'configHoraire'])->name('config.horaires');

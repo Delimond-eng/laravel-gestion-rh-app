@@ -164,7 +164,7 @@
                                 <i class="fe fe-chevron-right side-menu__angle"></i></a>
                             <ul class="slide-menu child2">
                                 <li class="slide">
-                                    <a href="javascript:void(0);" class="side-menu__item">Horaires de travail</a>
+                                    <a href="{{ url('/horaires') }}" class="side-menu__item">Horaires de travail</a>
                                 </li>
                                 <li class="slide">
                                     <a href="javascript:void(0);" class="side-menu__item">Equipes</a>

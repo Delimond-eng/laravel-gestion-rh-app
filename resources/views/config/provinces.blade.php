@@ -57,9 +57,9 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach(range(1, 26) as $iteration)
+                                    @foreach($provinces as $data)
                                         <tr>
-                                            <td>Kinshasa {{$iteration}}</td>
+                                            <td> {{$data->province_libelle}}</td>
                                             <td>
                                                 <a href="javascript:void(0);" class="btn btn-icon btn-sm btn-danger-transparent rounded-pill"><i class="ri-delete-bin-line"></i></a>
                                             </td>

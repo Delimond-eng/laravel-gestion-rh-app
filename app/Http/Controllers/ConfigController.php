@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Province;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 
@@ -14,8 +15,10 @@ class ConfigController extends Controller
     */
     public function configProvince():Renderable
     {
+        $provinces = Province::all();
         return view('config/provinces', [
-            "title"=>"Paramètre&provinces"
+            "title"=>"Paramètre&provinces",
+            "provinces"=>$provinces
         ]);
     }
 
@@ -91,6 +94,17 @@ class ConfigController extends Controller
     public function configFonction():Renderable{
         return view('config/fonctions', [
             "title"=>"Paramètre&Fonctions"
+        ]);
+    }
+
+
+    /**
+     * Afficher la page de configuration de l'horaire
+     * @return Renderable
+     */
+    public function configHoraire():Renderable{
+        return view('config/horaire', [
+            "title"=>"Paramètre&Horaires"
         ]);
     }
 }

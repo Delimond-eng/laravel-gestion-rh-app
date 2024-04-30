@@ -164,13 +164,13 @@
                                 <i class="fe fe-chevron-right side-menu__angle"></i></a>
                             <ul class="slide-menu child2">
                                 <li class="slide">
-                                    <a href="{{ url('/horaires') }}" class="side-menu__item">Horaires de travail</a>
+                                    <a href="" class="side-menu__item">Horaires de travail</a>
                                 </li>
                                 <li class="slide">
                                     <a href="javascript:void(0);" class="side-menu__item">Equipes</a>
                                 </li>
                                 <li class="slide">
-                                    <a href="javascript:void(0);" class="side-menu__item">Rotations</a>
+                                    <a href="{{ url('/rotations') }}" class="side-menu__item">Rotations</a>
                                 </li>
                                 <li class="slide">
                                     <a href="javascript:void(0);" class="side-menu__item">Type congés</a>

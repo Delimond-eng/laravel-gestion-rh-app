@@ -99,12 +99,12 @@ class ConfigController extends Controller
 
 
     /**
-     * Afficher la page de configuration de l'horaire
+     * Afficher la page de configuration de la rotations
      * @return Renderable
      */
-    public function configHoraire():Renderable{
-        return view('config/horaire', [
-            "title"=>"Paramètre&Horaires"
+    public function configRotation():Renderable{
+        return view('config/rotations', [
+            "title"=>"Paramètre&Rotations"
         ]);
     }
 }

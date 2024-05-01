@@ -107,4 +107,34 @@ class ConfigController extends Controller
             "title"=>"Paramètre&Rotations"
         ]);
     }
+
+    /**
+     * Afficher la page de configuration des horaires
+     * @return Renderable
+     */
+    public function configHoraireTravail():Renderable{
+        return view('config/horaireTravail', [
+            "title"=>"Paramètre&horaireTravail"
+        ]);
+    }
+
+    /**
+     * Afficher la page de configuration des equipes
+     * @return Renderable
+     */
+    public function configEquipe():Renderable{
+        return view('config/equipe', [
+            "title"=>"Paramètre&equipe"
+        ]);
+    }
+
+    /**
+     * Afficher la page de configuration des types conges
+     * @return Renderable
+     */
+    public function configTypeConge():Renderable{
+        return view('config/typeConge', [
+            "title"=>"Paramètre&TypeConge"
+        ]);
+    }
 }

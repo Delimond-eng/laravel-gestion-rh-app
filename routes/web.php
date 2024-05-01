@@ -56,3 +56,13 @@ Route::get('/fonctions', [ConfigController::class, 'configFonction'])->name('con
 
 //Route:: de configuration rotations
 Route::get('/rotations', [ConfigController::class, 'configRotation'])->name('config.rotations');
+
+//Route:: de configuration Horaire travail
+Route::get('/HoraireTravail', [ConfigController::class, 'configHoraireTravail'])->name('config.HoraireTravail');
+
+//Route:: de configuration equipe
+Route::get('/equipe', [ConfigController::class, 'configEquipe'])->name('config.equipe');
+
+//Route:: de configuration type congé
+Route::get('/TypeConge', [ConfigController::class, 'configTypeConge'])->name('config.TypeConge');
+

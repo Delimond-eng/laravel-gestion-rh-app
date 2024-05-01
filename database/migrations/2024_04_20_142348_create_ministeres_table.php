@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('ministere_libelle')->unique();
             $table->string('ministere_description')->nullable();
+            $table->string('status')->default('actif');
             $table->unsignedBigInteger('user_id');
             $table->timestamp('date_creation')->useCurrent();
         });

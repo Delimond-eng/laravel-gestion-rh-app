@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" data-nav-layout="vertical" data-theme-mode="light" data-header-styles="light" data-menu-styles="dark" data-toggled="close">
+<html lang="en" dir="ltr"  style="--primary-rgb: 14, 107, 230;" data-nav-layout="vertical" data-theme-mode="light" data-header-styles="light" data-menu-styles="dark" data-toggled="close">
 
 <head>
 
@@ -10,6 +10,7 @@
     <meta name="Description" content="RH Management application">
     <meta name="Author" content="Dev.Gaston Delimond">
     <meta name="keywords" content="IT Developer, Freelance developer, ">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- TITLE -->
     <title> Gestion RH | {{$title}} </title>
@@ -36,6 +37,7 @@
     <!-- COLOR PICKER CSS -->
     <link rel="stylesheet" href="{{asset('assets/libs/flatpickr/flatpickr.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/libs/%40simonwep/pickr/themes/nano.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/libs/sweetalert2/sweetalert2.min.css"')}}">
 
     <!-- CHOICES CSS -->
     <link rel="stylesheet" href="{{asset('assets/libs/choices.js/public/assets/styles/choices.min.css')}}">
@@ -181,6 +183,11 @@
 <!-- CHARTJS CHART JS -->
 <script src="{{asset('assets/libs/chart.js/chart.min.js')}}"></script>
 
+
+<!-- SWEETALERT JS -->
+<script src="{{asset('assets/libs/sweetalert2/sweetalert2.min.js')}}"></script>
+
+
 <!-- CRM-Dashboard -->
 <script src="{{asset('assets/js/pages/crm-dashboard-init.js')}}"></script>
 
@@ -191,8 +198,20 @@
 <!-- APP JS -->
 <script src={{asset('assets/js/app.js')}}></script>
 
+<!-- BS SCRIPTS JS -->
+<script src={{asset('assets/js/app/bs_scripts_init.js')}}></script>
+
+<!-- BS EDITION JS -->
+<script src={{asset('assets/js/app/edition.js')}}></script>
+
+
+
+
+
 <!-- CUSTOM-SWITCHER JS -->
 <script type="module" src="{{asset('assets/js/custom-switcher.js')}}"></script>
+
+
 
 
 @yield('scripts')

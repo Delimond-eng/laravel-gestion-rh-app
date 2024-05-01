@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('conge_type_libelle')->unique();
             $table->string('conge_type_description');
-            $table->string('conge_type_status')->default('actif');
+            $table->string('status')->default('actif');
             $table->unsignedBigInteger('user_id');
             $table->timestamp('conge_type_date_creation')->useCurrent();
         });

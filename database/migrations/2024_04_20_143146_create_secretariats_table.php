@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('secretariat_libelle')->unique();
             $table->string('secretariat_description');
-            $table->string('secretariat_status')->default('actif');
+            $table->string('status')->default('actif');
             $table->unsignedBigInteger('ministere_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamp('date_creation')->useCurrent();

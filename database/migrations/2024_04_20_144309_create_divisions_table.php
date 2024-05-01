@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('division_libelle');
             $table->string('division_description')->nullable();
-            $table->string('division_status')->default('actif');
+            $table->string('status')->default('actif');
             $table->unsignedBigInteger('direction_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamp('date_creation')->useCurrent();

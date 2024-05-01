@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('bureau_libelle');
             $table->string('bureau_description');
-            $table->string('bureau_status')->default('actif');
+            $table->string('status')->default('actif');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('division_id');
             $table->timestamp('date_creation')->useCurrent();

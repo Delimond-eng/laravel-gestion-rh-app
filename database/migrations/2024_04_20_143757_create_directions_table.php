@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('direction_libelle');
             $table->string('direction_description')->nullable();
-            $table->string('direction_status')->default('actif');
+            $table->string('status')->default('actif');
             $table->unsignedBigInteger('secretariat_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamp('date_creation')->useCurrent();

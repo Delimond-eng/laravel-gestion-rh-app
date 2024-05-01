@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('fonction_libelle')->unique();
             $table->string('fonction_description')->nullable();
-            $table->string('fonction_status')->default('actif');
+            $table->string('status')->default('actif');
             $table->unsignedBigInteger('user_id');
             $table->timestamp('date_creation')->useCurrent();
         });

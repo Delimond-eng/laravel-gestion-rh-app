@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('agent_telephone');
             $table->string('agent_email');
             $table->string('agent_adresse');
-            $table->string('agent_status')->default('actif');
+            $table->string('status')->default('actif');
             $table->timestamp('agent_date_creation')->useCurrent();
             $table->unsignedBigInteger('province_id');
             $table->unsignedBigInteger('bureau_id');

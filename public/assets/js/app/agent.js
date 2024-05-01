@@ -1,47 +1,46 @@
 document.addEventListener('DOMContentLoaded', function (e){
-    $('#province-select').select2({
-        data:[
-            "Province_1",
-            "Province_2"
-        ],
-        placeholder: "Sélectionnez une province...",
-    });
-    $('#bureau-select').select2({
-        data:[
-            "Bureau_1",
-            "Bureau_2"
-        ],
-        placeholder: "Sélectionnez un bureau...",
-    });
-    $('#fonction-select').select2({
-        data:[
-            "fonction_1",
-            "fonction_2"
-        ],
-        placeholder: "Sélectionnez une fonction...",
-    });
-
-    $('#grade-select').select2({
-        data:[
-            "Grade_1",
-            "Grade_2"
-        ],
-        placeholder: "Sélectionnez une grade...",
-    });
-    creerAgent();
+    /*Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Agent créé avec succès !",
+        showConfirmButton: !1,
+        timer: 1500,
+    });*/
 });
 
 
 /**
  * Permet de soumettre les infos saisies pour un agent
  * */
-function creerAgent(){
+function creerAgent() {
     const form = document.querySelector('#agent-form');
-    form.addEventListener("submit", function (event){
+    const formData = new FormData(form);
+
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    formData.append('_token', csrfToken);
+
+    console.log(formData)
+
+    form.addEventListener("submit", function (event) {
         event.preventDefault();
-        let datas = event.target;
-        datas.forEach((r)=>{
-            console.log(r.value);
-        });
+        fetch('/agents.create', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: data.message,
+                    showConfirmButton: !1,
+                    timer: 1500,
+                });
+                form.reset();
+            })
+            .catch(error => {
+                console.error('Une erreur s\'est produite:', error);
+            });
     });
 }
+

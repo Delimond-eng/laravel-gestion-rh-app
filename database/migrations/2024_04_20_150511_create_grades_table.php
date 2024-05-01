@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('grade_code')->unique()->nullable();
             $table->string('grade_libelle')->unique();
-            $table->string('grade_description');
-            $table->string('grade_status')->default('actif');
+            $table->string('grade_description')->nullable();
+            $table->string('status')->default('actif');
             $table->unsignedBigInteger('user_id');
             $table->timestamp('date_creation')->useCurrent();
         });

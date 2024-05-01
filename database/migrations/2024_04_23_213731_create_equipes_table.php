@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger("direction_id");
             $table->unsignedBigInteger("ministere_id");
             $table->unsignedBigInteger("user_id");
-            $table->string("equipe_status")->default('actif');
+            $table->string('status')->default('actif');
             $table->timestamp('date_creation')->useCurrent();
         });
     }

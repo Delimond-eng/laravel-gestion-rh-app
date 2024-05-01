@@ -23,7 +23,7 @@ return new class extends Migration
             $table->unsignedBigInteger('ministere_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamp('date_creation')->useCurrent();
-            $table->string('horaire_status')->default('actif');
+            $table->string('status')->default('actif');
         });
     }
 

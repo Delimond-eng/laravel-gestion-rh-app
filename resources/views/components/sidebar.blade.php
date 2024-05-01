@@ -45,7 +45,7 @@
                     </a>
                     <ul class="slide-menu child1">
                         <li class="slide">
-                            <a href="{{url('/agents-create')}}" class="side-menu__item">Création agents</a>
+                            <a href="{{url('/agents.create')}}" class="side-menu__item">Création agents</a>
                         </li>
                         <li class="slide">
                             <a href="{{url('/agents')}}" class="side-menu__item">Liste des agents</a>
@@ -178,8 +178,6 @@
 
                             </ul>
                         </li>
-
-
                     </ul>
                 </li>
                 <!-- End::slide -->

@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('styles')
+    <link rel="stylesheet" href="{{asset('https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css')}}">
+    <link rel="stylesheet" href="{{asset('https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('https://cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap5.min.css')}}">
+@endsection
+
 @section('content')
     <div class="container-fluid">
         <!-- Page Header -->
@@ -24,13 +30,13 @@
                         <div class="card-title">
                             Liste des agents
                         </div>
-                        <div class="input-group w-50">
+                        <!--<div class="input-group w-50">
                             <input type="text" class="form-control form-control-sm" placeholder="Recherche agents...">
-                        </div>
+                        </div>-->
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table text-nowrap">
+                            <table class="table text-nowrap" id="agent_table">
                                 <thead class="table-primary">
                                 <tr>
                                     <th scope="col">Matricule</th>
@@ -44,30 +50,31 @@
                                     <th scope="col">Bureau</th>
                                     <th scope="col">Fonction</th>
                                     <th scope="col">Grade</th>
+                                    <th scope="col"></th>
                                 </tr>
                                 </thead>
                                 <tbody>
 
-                                @foreach(range(1, 10) as $iteration)
+                                @foreach($agents as $agent)
                                     <tr>
-                                        <th scope="row">0394939BA</th>
-                                        <td>Bukasa</td>
-                                        <td>Tshitoko</td>
-                                        <td>Laurent</td>
-                                        <td>M</td>
-                                        <td>+243834894400</td>
-                                        <td>laurent16@gmail.com</td>
-                                        <td>Kinshasa</td>
-                                        <td>Bureau 02</td>
-                                        <td>Assistant</td>
-                                        <td>Agent</td>
+                                        <th scope="row">{{$agent->agent_matricule}}</th>
+                                        <td>{{$agent->agent_nom}}</td>
+                                        <td>{{$agent->agent_postnom}}</td>
+                                        <td>{{$agent->agent_prenom}}</td>
+                                        <td>{{$agent->agent_genre}}</td>
+                                        <td>{{$agent->agent_telephone}}</td>
+                                        <td>{{$agent->agent_email}}</td>
+                                        <td>{{$agent->province->province_libelle}}</td>
+                                        <td>{{$agent->bureau->bureau_libelle}}</td>
+                                        <td>{{$agent->fonction->fonction_libelle}}</td>
+                                        <td>{{$agent->grade->grade_libelle}}</td>
                                         <td>
                                             <div class="hstack gap-2 fs-15">
 
                                                 <a href="javascript:void(0);"
                                                    class="btn btn-icon btn-sm btn-info rounded-pill"><i
                                                         class="ri-edit-line"></i></a>
-                                                <a href="javascript:void(0);"
+                                                <a href="{{ url('/agent.delete/'.$agent->id) }}"
                                                    class="btn btn-icon btn-sm btn-danger rounded-pill"><i
                                                         class="ri-delete-bin-line"></i></a>
                                             </div>
@@ -83,5 +90,21 @@
         </div>
         <!-- End:: row-1 -->
     </div>
+@endsection
+
+@section('scripts')
+    <script src="{{asset('https://code.jquery.com/jquery-3.6.1.min.js')}}" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <!-- DATATABLES CDN JS -->
+    <script src="{{asset('https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js')}}"></script>
+    <script src="{{asset('https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js')}}"></script>
+    <script src="{{asset('https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js')}}"></script>
+    <script src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.6/pdfmake.min.js')}}"></script>
+    <script src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js')}}"></script>
+    <script src="{{asset('https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js')}}"></script>
+
+    <script src="{{asset('assets/js/app/init_datatables.js')}}"></script>
 @endsection
 

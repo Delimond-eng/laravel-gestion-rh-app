@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamp('presence_date')->useCurrent();
             $table->time('presence_heure_arrive')->useCurrent();
             $table->time('presence_heure_depart')->nullable();
-            $table->string('presence_status')->default('present');
+            $table->string('status')->default('actif');
             $table->unsignedBigInteger('agent_id');
         });
     }

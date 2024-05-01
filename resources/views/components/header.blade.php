@@ -54,8 +54,8 @@
                             <img src="assets/images/faces/9.jpg" alt="img" width="32" height="32" class="rounded-circle">
                         </div>
                         <div class="d-sm-block d-none">
-                            <p class="fw-semibold mb-0 lh-1">{{ Auth::user()->name }}</p>
-                            <span class="op-7 fw-normal d-block fs-11">{{ Auth::user()->email }}</span>
+                            <p class="fw-semibold mb-0 lh-1">{{ Auth::check() ?  Auth::user()->name : '' }}</p>
+                            <span class="op-7 fw-normal d-block fs-11">{{Auth::check() ? Auth::user()->email : '' }}</span>
                         </div>
                     </div>
                 </a>

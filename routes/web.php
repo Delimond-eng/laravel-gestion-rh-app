@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ConfigController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -59,7 +58,17 @@ Route::post('/bureaux', [ConfigController::class, 'creerBureau'])->name('config.
 Route::get('/grades/{id?}', [ConfigController::class, 'configGrade'])->name('config.grades');
 Route::post('/grades', [ConfigController::class, 'creerGrade'])->name('config.create.grades');
 
+//Route:: de configuration rotations
+Route::get('/rotations', [ConfigController::class, 'configRotation'])->name('config.rotations');
 
+//Route:: de configuration Horaire travail
+Route::get('/HoraireTravail', [ConfigController::class, 'configHoraireTravail'])->name('config.HoraireTravail');
+
+//Route:: de configuration equipe
+Route::get('/equipe', [ConfigController::class, 'configEquipe'])->name('config.equipe');
+
+//Route:: de configuration type congé
+Route::get('/TypeConge', [ConfigController::class, 'configTypeConge'])->name('config.TypeConge');
 //Route:: de configuration fonction
 Route::get('/fonctions/{id?}', [ConfigController::class, 'configFonction'])->name('config.fonctions');
 Route::post('/fonctions', [ConfigController::class, 'creerFonction'])->name('config.create.fonctions');

@@ -33,6 +33,7 @@ class Horaire extends Model
         'heure_retard',
         'nbre_retard_notification',
         'direction_id',
+        'secretariat_id',
         'ministere_id',
         'user_id',
     ];

@@ -413,18 +413,57 @@ class ConfigController extends Controller
     {
         $id = $request->input('id');
         $result = Fonction::updateOrCreate(
-            ["id"=>$id],
+            ["id" => $id],
             [
                 'fonction_libelle' => $request->input('libelle'),
-                'user_id'=>Auth::user()->id,
+                'user_id' => Auth::user()->id,
             ]
         );
 
         return redirect()->route('config.fonctions')->with([
-            "message"=>isset($id)? 'Mise à jour effectuée !' :"Nouvelle grade créé avec succès !",
-            "fonction"=>$result,
-            "title"=>"Paramètre&Fonctions"
+            "message" => isset($id) ? 'Mise à jour effectuée !' : "Nouvelle grade créé avec succès !",
+            "fonction" => $result,
+            "title" => "Paramètre&Fonctions"
         ]);
+    }
 
+    /**
+     * Afficher la page de configuration de la rotations
+     * @return Renderable
+     */
+    public function configRotation():Renderable{
+        return view('config/rotations', [
+            "title"=>"Paramètre&Rotations"
+        ]);
+    }
+
+    /**
+     * Afficher la page de configuration des horaires
+     * @return Renderable
+     */
+    public function configHoraireTravail():Renderable{
+        return view('config/horaireTravail', [
+            "title"=>"Paramètre&horaireTravail"
+        ]);
+    }
+
+    /**
+     * Afficher la page de configuration des equipes
+     * @return Renderable
+     */
+    public function configEquipe():Renderable{
+        return view('config/equipe', [
+            "title"=>"Paramètre&equipe"
+        ]);
+    }
+
+    /**
+     * Afficher la page de configuration des types conges
+     * @return Renderable
+     */
+    public function configTypeConge():Renderable{
+        return view('config/typeConge', [
+            "title"=>"Paramètre&TypeConge"
+        ]);
     }
 }

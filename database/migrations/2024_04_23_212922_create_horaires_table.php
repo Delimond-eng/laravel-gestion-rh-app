@@ -20,6 +20,7 @@ return new class extends Migration
             $table->time('heure_retard');
             $table->integer('nbre_retard_notification')->nullable();
             $table->unsignedBigInteger('direction_id');
+            $table->unsignedBigInteger('secretariat_id');
             $table->unsignedBigInteger('ministere_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamp('date_creation')->useCurrent();

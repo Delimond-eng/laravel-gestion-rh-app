@@ -86,12 +86,19 @@
                     </a>
                     <ul class="slide-menu child1">
                         <li class="slide">
-                            <a href="javascript:void(0);" class="side-menu__item">Rapport des congés</a>
+                            <a href="{{url('/conge.reports')}}" class="side-menu__item">Rapport des congés</a>
                         </li>
                         <li class="slide">
-                            <a href="aboutus.html" class="side-menu__item">Attribution congé</a>
+                            <a href="{{url('/conge.attribution')}}" class="side-menu__item">Attribution congé</a>
                         </li>
                     </ul>
+                </li>
+
+                <li class="slide">
+                    <a href="{{url('/rotations') }}" class="side-menu__item">
+                        <i class="ri-arrow-left-right-line side-menu__icon"></i>
+                        <span class="side-menu__label">Rotations</span>
+                    </a>
                 </li>
                 <!-- End::slide -->
 
@@ -164,16 +171,14 @@
                                 <i class="fe fe-chevron-right side-menu__angle"></i></a>
                             <ul class="slide-menu child2">
                                 <li class="slide">
-                                    <a href="{{ url('/HoraireTravail') }}" class="side-menu__item">Horaires de travail</a>
+                                    <a href="{{ url('/horaires') }}" class="side-menu__item">Horaires de travail</a>
                                 </li>
                                 <li class="slide">
                                     <a href="{{ url('/equipe') }}" class="side-menu__item">Equipes</a>
                                 </li>
+
                                 <li class="slide">
-                                    <a href="{{ url('/rotations') }}" class="side-menu__item">Rotations</a>
-                                </li>
-                                <li class="slide">
-                                    <a href="{{ url('/TypeConge') }}" class="side-menu__item">Type congés</a>
+                                    <a href="{{ url('/type_conge') }}" class="side-menu__item">Type congés</a>
                                 </li>
 
                             </ul>

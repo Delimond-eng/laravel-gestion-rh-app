@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('bureaux', function (Blueprint $table) {
             $table->id();
             $table->string('bureau_libelle');
-            $table->string('bureau_description');
+            $table->string('bureau_description')->nullable();
             $table->string('status')->default('actif');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('division_id');

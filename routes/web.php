@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ConfigController;
+use App\Http\Controllers\CongeController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -60,18 +62,27 @@ Route::post('/grades', [ConfigController::class, 'creerGrade'])->name('config.cr
 
 //Route:: de configuration rotations
 Route::get('/rotations', [ConfigController::class, 'configRotation'])->name('config.rotations');
+Route::post('/rotations.create', [ConfigController::class, 'creerRotation'])->name('config.rotations.create');
 
 //Route:: de configuration Horaire travail
-Route::get('/HoraireTravail', [ConfigController::class, 'configHoraireTravail'])->name('config.HoraireTravail');
+Route::get('/horaires', [ConfigController::class, 'configHoraireTravail'])->name('config.horaires');
+Route::post('/horaires.create', [ConfigController::class, 'creerHoraire'])->name('config.horaires.create');
 
 //Route:: de configuration equipe
 Route::get('/equipe', [ConfigController::class, 'configEquipe'])->name('config.equipe');
+Route::post('/equipe.create', [ConfigController::class, 'creerEquipe'])->name('config.equipe.create');
 
 //Route:: de configuration type congé
-Route::get('/TypeConge', [ConfigController::class, 'configTypeConge'])->name('config.TypeConge');
+Route::get('/type_conge', [CongeController::class, 'configTypeConge'])->name('config.type_conge.view');
+Route::post('/type_conge.create', [CongeController::class, 'creerTypeConge'])->name('config.type_conge.create');
 //Route:: de configuration fonction
 Route::get('/fonctions/{id?}', [ConfigController::class, 'configFonction'])->name('config.fonctions');
 Route::post('/fonctions', [ConfigController::class, 'creerFonction'])->name('config.create.fonctions');
+
+//Route:: pour l'attribution du congé
+Route::get('/conge.attribution', [CongeController::class, 'attributionConge'])->name('conge.attribution');
+Route::get('/conge.reports', [CongeController::class, 'rapportConges'])->name('conge.reports');
+Route::post('/conge.attribution', [CongeController::class, 'creerAttribution'])->name('conge.attribution.create');
 
 //Route:: pour supprimer de la base de données via la table
 Route::get('/delete/{table}/{id}', function (string $table, int $id){

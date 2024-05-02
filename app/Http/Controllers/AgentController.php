@@ -25,7 +25,7 @@ class AgentController extends Controller
         $bureaux = Bureau::where('status', 'actif')->get();
         $grades = Grade::where('status', 'actif')->get();
         $fonctions = Fonction::where('status', 'actif')->get();
-        return view('agent_creation', [
+        return view('pages/agent/agent_creation', [
             "title"=>"Création agents",
             "config"=>[
                 "provinces"=>$provinces,
@@ -78,7 +78,7 @@ class AgentController extends Controller
                 ->with('user')
                 ->where('status', 'actif')
                 ->get();
-        return view('agent_liste', [
+        return view('pages/agent/agent_liste', [
             "title"=>"Liste des agents",
             "agents"=>$agents
         ]);

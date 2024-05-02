@@ -67,15 +67,9 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-<<<<<<< HEAD
                                     @foreach($provinces as $item)
                                         <tr>
-                                            <td>{{$item->province_libelle}}</td>
-=======
-                                    @foreach($provinces as $data)
-                                        <tr>
-                                            <td> {{$data->province_libelle}}</td>
->>>>>>> ff828043e92c5fb1801ecbc85df4d712da6112a6
+                                            <td> {{$item->province_libelle}}</td>
                                             <td>
                                                 <a href="{{url('/delete/provinces/'.$item->id)}}"  class="btn btn-icon btn-sm btn-danger-transparent rounded-pill"><i class="ri-delete-bin-line"></i></a>
                                                 <a href="{{url('/provinces/'.$item->id)}}" class="btn btn-icon btn-sm btn-info-transparent rounded-pill"><i class="ri-edit-fill"></i></a>

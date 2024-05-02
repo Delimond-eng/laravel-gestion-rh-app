@@ -88,7 +88,7 @@
                                             <td>{{$sec->ministere->ministere_libelle}}</td>
                                             <td>
                                                 <a href="{{url('/secretariats/'.$sec->id)}}" class="btn btn-icon btn-sm btn-info-transparent rounded-pill me-2"><i class="ri-edit-2-line"></i></a>
-                                                <a href="{{url('/delete/secretariats/'.$item->id)}}" class="btn btn-icon btn-sm btn-danger-transparent rounded-pill"><i class="ri-delete-bin-line"></i></a>
+                                                <a href="{{url('/delete/secretariats/'.$sec->id)}}" class="btn btn-icon btn-sm btn-danger-transparent rounded-pill"><i class="ri-delete-bin-line"></i></a>
                                             </td>
                                         </tr>
 

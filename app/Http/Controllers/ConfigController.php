@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Agent;
 use App\Models\Bureau;
 use App\Models\Direction;
 use App\Models\Division;
+use App\Models\Equipe;
 use App\Models\Fonction;
 use App\Models\Grade;
+use App\Models\Horaire;
 use App\Models\Ministere;
 use App\Models\Province;
+use App\Models\Rotation;
 use App\Models\Secretariat;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
@@ -218,7 +222,7 @@ class ConfigController extends Controller
             ]
         );
 
-        return redirect()->route('config.secretariats')->with([
+        return redirect()->route('config.directions')->with([
             "title"=>"Paramètre&Directions",
             "message"=>isset($id) ? "Mise à jour effectuée avec succès !" : "Direction créée avec succès !",
             "direction"=>$result
@@ -432,8 +436,50 @@ class ConfigController extends Controller
      * @return Renderable
      */
     public function configRotation():Renderable{
+        $equipes= Equipe::where("status", "actif")->get();
+        $directions= Direction::where("status", "actif")->get();
+        $agents= Agent::where("status", "actif")->get();
+        $ministeres= Ministere::where("status", "actif")->get();
+        $rotations= Rotation::with('equipe')
+                    ->with('direction')
+                    ->with('agent')
+                    ->with('ministere')
+                    ->with('user')
+                    ->where("status", "actif")
+                    ->get();
         return view('config/rotations', [
-            "title"=>"Paramètre&Rotations"
+            "title" => "Paramètre&Rotations",
+            "equipes" => $equipes,
+            "directions" => $directions,
+            "agents" => $agents,
+            "ministeres"=>$ministeres,
+            "rotations"=>$rotations
+        ]);
+    }
+
+    /**
+     * Creation d'une equipe de travail
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function creerRotation(Request $request): RedirectResponse
+    {
+        $id = $request->input('id');
+        $result = Rotation::updateOrCreate(
+            ["equipe_id" => $request->input('equipe_id')],
+            [
+                'equipe_id'=>$request->input('equipe_id'),
+                'agent_id'=>$request->input('agent_id'),
+                'direction_id' =>$request->input('direction_id'),
+                'ministere_id'=>$request->input('equipe_id') ,
+                'jours' =>$request->input('jours'),
+                'user_id'=>Auth::id(),
+            ]
+        );
+
+        return redirect()->route('config.rotations')->with([
+            "message" => isset($id) ? 'Mise à jour effectuée !' : "Nouvelle rotation créée avec succès !",
+            "title" => "Paramètre&Rotations"
         ]);
     }
 
@@ -442,28 +488,121 @@ class ConfigController extends Controller
      * @return Renderable
      */
     public function configHoraireTravail():Renderable{
-        return view('config/horaireTravail', [
-            "title"=>"Paramètre&horaireTravail"
+        $secretariats = Secretariat::where("status", "actif")->get();
+        $directions = Direction::where("status", "actif")->get();
+        $ministeres = Ministere::where("status", "actif")->get();
+        $horaires = Horaire::with('secretariat')
+                    ->with('direction')
+                    ->with('user')
+                    ->where('status', 'actif')
+                    ->get();
+        return view('config/horaires', [
+            "title"=>"Paramètre&horaireTravail",
+            "directions"=>$directions,
+            "secretariats"=>$secretariats,
+            "ministeres"=>$ministeres,
+            "horaires"=>$horaires
         ]);
     }
+
+
+    /**
+     * Creation fonction
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function creerHoraire(Request $request): RedirectResponse
+    {
+        $id = $request->input('id');
+        if (isset($id)){
+            $result = Horaire::updateOrCreate(
+                [
+                    "id" => $id,
+                ],
+                [
+                    'heure_debut' => $request->input('heure_debut'),
+                    'heure_fin' => $request->input('heure_fin'),
+                    'heure_retard' => $request->input('heure_retard'),
+                    'nbre_retard_notification' => $request->input('nbre_retard'),
+                    'direction_id' => (int)$request->input('direction_id'),
+                    'secretariat_id' => $request->input('secretariat_id'),
+                    'ministere_id' => (int)$request->input('ministere_id'),
+                    'user_id' => Auth::user()->id,
+                ],
+
+            );
+        }
+        else{
+            $result = Horaire::updateOrCreate(
+                [
+                    "direction_id" => (int)$request->input('direction_id'),
+                    "ministere_id"=> (int)$request->input('ministere_id'),
+                ],
+                [
+                    'heure_debut' => $request->input('heure_debut'),
+                    'heure_fin' => $request->input('heure_fin'),
+                    'heure_retard' => $request->input('heure_retard'),
+                    'nbre_retard_notification' => $request->input('nbre_retard'),
+                    'direction_id' => (int)$request->input('direction_id'),
+                    'secretariat_id' => $request->input('secretariat_id'),
+                    'ministere_id' => (int)$request->input('ministere_id'),
+                    'user_id' => Auth::user()->id,
+                ],
+
+            );
+        }
+
+        return redirect()->route('config.horaires')->with([
+            "message" => isset($id) ? 'Mise à jour effectuée !' : "Horaire créé avec succès !",
+            "title" => "Paramètre&Horaires"
+        ]);
+    }
+
 
     /**
      * Afficher la page de configuration des equipes
      * @return Renderable
      */
     public function configEquipe():Renderable{
-        return view('config/equipe', [
-            "title"=>"Paramètre&equipe"
+        $directions = Direction::where("status", "actif")->get();
+        $ministeres = Ministere::where("status", "actif")->get();
+        $equipes = Equipe::with('direction')
+            ->with('ministere')
+            ->with('user')
+            ->where('status', 'actif')
+            ->get();
+        return view('config/equipes', [
+            "title"=>"Paramètre&equipes",
+            "directions"=>$directions,
+            "ministeres"=>$ministeres,
+            "equipes"=>$equipes
         ]);
     }
 
+
     /**
-     * Afficher la page de configuration des types conges
-     * @return Renderable
+     * Creation d'une equipe de travail
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function configTypeConge():Renderable{
-        return view('config/typeConge', [
-            "title"=>"Paramètre&TypeConge"
+    public function creerEquipe(Request $request): RedirectResponse
+    {
+        $id = $request->input('id');
+        $result = Equipe::updateOrCreate(
+            ["id" => $id],
+            [
+                'equipe_libelle' => $request->input('libelle'),
+                'ministere_id' => $request->input('ministere_id'),
+                'direction_id' => $request->input('direction_id'),
+                'user_id' => Auth::user()->id,
+            ]
+        );
+
+        return redirect()->route('config.equipe')->with([
+            "message" => isset($id) ? 'Mise à jour effectuée !' : "Nouvelle équipe créée avec succès !",
+            "title" => "Paramètre&Equipes"
         ]);
     }
+
+
 }

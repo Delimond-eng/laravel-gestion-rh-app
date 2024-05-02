@@ -30,9 +30,9 @@
                         <div class="card-title">
                             Liste des agents
                         </div>
-                        <!--<div class="input-group w-50">
-                            <input type="text" class="form-control form-control-sm" placeholder="Recherche agents...">
-                        </div>-->
+                        <div class="prism-toggle">
+                            <a href="/agents.create" class="btn btn-sm btn-primary" type="button"><i class="ri-add-line me-2"></i>Création agent</a>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">

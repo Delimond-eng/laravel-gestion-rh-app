@@ -32,6 +32,7 @@ class Conge extends Model
         'conge_date_fin',
         'conge_motif',
         'type_id',
+        'agent_id',
         'user_id',
     ];
 
@@ -51,7 +52,9 @@ class Conge extends Model
      * @var array
      */
     protected $casts = [
-        'conge_date_creation'=>'datetime:d/m/Y H:i'
+        'conge_date_creation'=>'datetime:d/m/Y H:i',
+        'conge_date_debut'=>'datetime:d/m/Y',
+        'conge_date_fin'=>'datetime:d/m/Y',
     ];
 
     /**
@@ -77,6 +80,15 @@ class Conge extends Model
     public function type():BelongsTo
     {
         return $this->belongsTo(CongeType::class, foreignKey: 'type_id');
+    }
+
+    /**
+     * agent concerné
+     * @return BelongsTo
+    */
+    public function agent():BelongsTo
+    {
+        return $this->belongsTo(Agent::class, foreignKey: 'agent_id');
     }
 
 

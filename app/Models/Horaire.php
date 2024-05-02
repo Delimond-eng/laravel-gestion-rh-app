@@ -66,6 +66,7 @@ class Horaire extends Model
         'date_creation'
     ];
 
+
     /**
      * Indicates if the model should be timestamped.
      *
@@ -89,6 +90,15 @@ class Horaire extends Model
     public function direction():BelongsTo
     {
         return $this->belongsTo(Direction::class, 'direction_id');
+    }
+
+    /**
+     * Voir Direction
+     * @return BelongsTo
+     */
+    public function secretariat():BelongsTo
+    {
+        return $this->belongsTo(Secretariat::class, 'secretariat_id');
     }
 
     /**

@@ -19,6 +19,11 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->unsignedBigInteger('province_id')->nullable();
+            $table->unsignedBigInteger('ministere_id')->nullable();
+            $table->unsignedBigInteger('direction_id')->nullable();
+            $table->unsignedBigInteger('division_id')->nullable();
+            $table->unsignedBigInteger('bureau_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

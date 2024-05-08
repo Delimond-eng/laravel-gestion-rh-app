@@ -44,30 +44,11 @@
                             </select>
                         </div>
                         <div class="col-md-6 col-sm-12 mt-2">
-                            <label for="directionId" class="form-label">Direction<sup class="text-danger">*</sup> </label>
-                            <select name="direction_id" class="form-select form-select-lg" id="directionId" required>
-                                <option hidden selected>Sélectionnez une direction...</option>
-                                @foreach($directions as $data)
-                                    <option value="{{$data->id}}">{{$data->direction_libelle}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-md-6 col-sm-12 mt-2">
                             <label for="agentId" class="form-label">Agent<sup class="text-danger">*</sup> </label>
                             <select name="agent_id" class="form-select form-select-lg" id="agentId" required>
                                 <option hidden selected>Sélectionnez un agent...</option>
                                 @foreach($agents as $data)
                                     <option value="{{$data->id}}">{{$data->agent_matricule. ' -- '.$data->agent_nom.' '.$data->agent_postnom.'  '.$data->agent_prenom}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="col-md-6 col-sm-12 mt-2">
-                            <label for="ministereId" class="form-label">Ministère<sup class="text-danger">*</sup> </label>
-                            <select name="ministere_id" class="form-select form-select-lg" id="ministereId" required>
-                                <option hidden selected>Sélectionnez un ministere...</option>
-                                @foreach($ministeres as $data)
-                                    <option value="{{$data->id}}">{{$data->ministere_libelle}}</option>
                                 @endforeach
                             </select>
                         </div>

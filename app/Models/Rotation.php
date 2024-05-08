@@ -30,8 +30,6 @@ class Rotation extends Model
     protected $fillable = [
         'equipe_id',
         'agent_id',
-        'direction_id',
-        'ministere_id',
         'jours',
         'user_id',
     ];
@@ -96,23 +94,5 @@ class Rotation extends Model
     public function user():BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
-    }
-
-    /**
-     * Relation Direction
-     * @return BelongsTo
-     */
-    public function direction():BelongsTo
-    {
-        return $this->belongsTo(Direction::class, 'direction_id');
-    }
-
-    /**
-     * Relation Ministere
-     * @return BelongsTo
-     */
-    public function ministere():BelongsTo
-    {
-        return $this->belongsTo(Ministere::class, 'ministere_id');
     }
 }

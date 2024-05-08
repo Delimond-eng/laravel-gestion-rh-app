@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('user_roles', function (Blueprint $table) {
             $table->id();
-            $table->string('role_libelle')->unique();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('role_id');
             $table->string('status')->default('actif');
             $table->timestamps();
         });

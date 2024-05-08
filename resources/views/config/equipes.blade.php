@@ -40,25 +40,11 @@
                             <input type="text" name="libelle" class="form-control" id="libelle" placeholder="Saisir le nom l'equipe..." required>
                         </div>
 
-                        <div class="col-md-12 col-sm-12 mt-2">
-                            <label for="directionId" class="form-label">Direction<sup class="text-danger">*</sup> </label>
-                            <select name="direction_id" class="form-select form-select-lg" id="directionId">
-                                <option hidden selected>Sélectionnez une direction...</option>
-                                @foreach($directions as $data)
-                                    <option value="{{$data->id}}">{{$data->direction_libelle}}</option>
-                                @endforeach
-                            </select>
+                        <div class="col-md-12 col-sm-12">
+                            <label for="desc" class="form-label">Description<sup class="text-danger">(Optionnelle)</sup> </label>
+                            <textarea name="description" id="desc"  class="form-control"></textarea>
                         </div>
 
-                        <div class="col-md-12 col-sm-12 mt-2">
-                            <label for="ministereId" class="form-label">Ministere<sup class="text-danger">*</sup> </label>
-                            <select name="ministere_id" class="form-select form-select-lg" id="ministereId">
-                                <option hidden selected>Sélectionnez un ministere...</option>
-                                @foreach($ministeres as $data)
-                                    <option value="{{$data->id}}">{{$data->ministere_libelle}}</option>
-                                @endforeach
-                            </select>
-                        </div>
                     </div>
 
                     <div class="card-footer d-flex justify-content-end">

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Equipe extends Model
 {
@@ -29,8 +30,7 @@ class Equipe extends Model
      */
     protected $fillable = [
         'equipe_libelle',
-        'direction_id',
-        'ministere_id',
+        'equipe_description',
         'user_id',
     ];
 
@@ -79,20 +79,11 @@ class Equipe extends Model
     }
 
     /**
-     * Voir Direction
-     * @return BelongsTo
+     * All rotations for team
+     * @return HasMany
      */
-    public function direction():BelongsTo
+    public function rotations():HasMany
     {
-        return $this->belongsTo(Direction::class, 'direction_id');
-    }
-
-    /**
-     * Voir Ministere
-     * @return BelongsTo
-     */
-    public function ministere():BelongsTo
-    {
-        return $this->belongsTo(Ministere::class, 'ministere_id');
+        return $this->hasMany(Rotation::class, foreignKey: 'equipe_id', localKey: 'id');
     }
 }

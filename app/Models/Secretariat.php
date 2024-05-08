@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Secretariat extends Model
 {
@@ -68,6 +69,16 @@ class Secretariat extends Model
      * @var boolean
      */
     public $timestamps = false;
+
+
+    /**
+     * All Directions
+     * @return HasMany
+    */
+    public function directions():HasMany
+    {
+        return $this->hasMany(Direction::class, foreignKey: 'secretariat_id', localKey: 'id' );
+    }
 
 
     /**

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Direction extends Model
 {
@@ -68,6 +69,15 @@ class Direction extends Model
      * @var boolean
      */
     public $timestamps = false;
+
+    /**
+     * All divisions
+     * @return HasMany
+    */
+    public function divisions():HasMany
+    {
+        return $this->hasMany(Division::class, foreignKey: 'division_id', localKey: 'id');
+    }
 
     /**
      * Voir utilisateur session

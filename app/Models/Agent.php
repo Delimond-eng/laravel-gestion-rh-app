@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Agent extends Model
 {
+    use HasFactory;
     /**
      * The database table used by the model.
      *
@@ -37,6 +38,10 @@ class Agent extends Model
         "agent_email",
         "agent_adresse",
         "province_id",
+        "ministere_id",
+        "secretariat_id",
+        "direction_id",
+        "division_id",
         "bureau_id",
         "fonction_id",
         "grade_id",
@@ -85,6 +90,43 @@ class Agent extends Model
     public function province() : BelongsTo
     {
         return $this->belongsTo(Province::class, foreignKey: 'province_id');
+    }
+
+
+    /**
+     * Voir le ministere
+     * @return BelongsTo
+    */
+    public function ministere() : BelongsTo
+    {
+        return $this->belongsTo(Ministere::class, foreignKey: 'ministere_id');
+    }
+
+    /**
+     * Voir le ministere
+     * @return BelongsTo
+    */
+    public function secretariat() : BelongsTo
+    {
+        return $this->belongsTo(Secretariat::class, foreignKey: 'secretariat_id');
+    }
+
+    /**
+     * Voir le ministere
+     * @return BelongsTo
+    */
+    public function direction() : BelongsTo
+    {
+        return $this->belongsTo(Direction::class, foreignKey: 'direction_id');
+    }
+
+    /**
+     * Voir la division
+     * @return BelongsTo
+    */
+    public function division() : BelongsTo
+    {
+        return $this->belongsTo(Division::class, foreignKey: 'division_id');
     }
 
     /**

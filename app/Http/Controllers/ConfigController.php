@@ -278,7 +278,7 @@ class ConfigController extends Controller
             ]
         );
 
-        return redirect()->route('config.directions')->with([
+        return redirect()->route('config.divisions')->with([
             "title"=>"Paramètre&Divisions",
             "message"=>isset($id) ?"Mise à jour effectuée avec succès !" :"Division créée avec succès !",
             "division"=>$result
@@ -437,22 +437,23 @@ class ConfigController extends Controller
      */
     public function configRotation():Renderable{
         $equipes= Equipe::where("status", "actif")->get();
-        $directions= Direction::where("status", "actif")->get();
         $agents= Agent::where("status", "actif")->get();
-        $ministeres= Ministere::where("status", "actif")->get();
         $rotations= Rotation::with('equipe')
-                    ->with('direction')
-                    ->with('agent')
-                    ->with('ministere')
+                    ->with('agent.province')
+                    ->with('agent.ministere')
+                    ->with('agent.secretariat')
+                    ->with('agent.direction')
+                    ->with('agent.division')
+                    ->with('agent.bureau')
+                    ->with('agent.fonction')
+                    ->with('agent.grade')
                     ->with('user')
                     ->where("status", "actif")
                     ->get();
         return view('config/rotations', [
             "title" => "Paramètre&Rotations",
             "equipes" => $equipes,
-            "directions" => $directions,
             "agents" => $agents,
-            "ministeres"=>$ministeres,
             "rotations"=>$rotations
         ]);
     }
@@ -470,8 +471,6 @@ class ConfigController extends Controller
             [
                 'equipe_id'=>$request->input('equipe_id'),
                 'agent_id'=>$request->input('agent_id'),
-                'direction_id' =>$request->input('direction_id'),
-                'ministere_id'=>$request->input('equipe_id') ,
                 'jours' =>$request->input('jours'),
                 'user_id'=>Auth::id(),
             ]
@@ -564,17 +563,11 @@ class ConfigController extends Controller
      * @return Renderable
      */
     public function configEquipe():Renderable{
-        $directions = Direction::where("status", "actif")->get();
-        $ministeres = Ministere::where("status", "actif")->get();
-        $equipes = Equipe::with('direction')
-            ->with('ministere')
-            ->with('user')
+        $equipes = Equipe::with('user')
             ->where('status', 'actif')
             ->get();
         return view('config/equipes', [
             "title"=>"Paramètre&equipes",
-            "directions"=>$directions,
-            "ministeres"=>$ministeres,
             "equipes"=>$equipes
         ]);
     }
@@ -592,9 +585,8 @@ class ConfigController extends Controller
             ["id" => $id],
             [
                 'equipe_libelle' => $request->input('libelle'),
-                'ministere_id' => $request->input('ministere_id'),
-                'direction_id' => $request->input('direction_id'),
-                'user_id' => Auth::user()->id,
+                'equipe_description' => $request->input('description'),
+                'user_id' => Auth::id(),
             ]
         );
 

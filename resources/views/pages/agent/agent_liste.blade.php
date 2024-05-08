@@ -36,7 +36,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table text-nowrap" id="agent_table">
+                            <table class="table text-nowrap dt-responsive overflow-x-hidden" id="agent_table">
                                 <thead class="table-primary">
                                 <tr>
                                     <th scope="col">Matricule</th>
@@ -47,6 +47,10 @@
                                     <th scope="col">Téléphone</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Province</th>
+                                    <th scope="col">Ministère</th>
+                                    <th scope="col">Secrétariat</th>
+                                    <th scope="col">Direction</th>
+                                    <th scope="col">Division</th>
                                     <th scope="col">Bureau</th>
                                     <th scope="col">Fonction</th>
                                     <th scope="col">Grade</th>
@@ -65,6 +69,10 @@
                                         <td>{{$agent->agent_telephone}}</td>
                                         <td>{{$agent->agent_email}}</td>
                                         <td>{{$agent->province->province_libelle}}</td>
+                                        <td>{{$agent->ministere->ministere_libelle}}</td>
+                                        <td>{{$agent->secretariat->secretariat_libelle}}</td>
+                                        <td>{{$agent->direction->direction_libelle}}</td>
+                                        <td>{{$agent->division->division_libelle}}</td>
                                         <td>{{$agent->bureau->bureau_libelle}}</td>
                                         <td>{{$agent->fonction->fonction_libelle}}</td>
                                         <td>{{$agent->grade->grade_libelle}}</td>

@@ -27,6 +27,10 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('da
 Route::get('/agents.create/{id?}', [App\Http\Controllers\AgentController::class, 'navigateToCreatePage']);
 Route::post('/agents.create', [App\Http\Controllers\AgentController::class, 'creerAgent'])->name('agents.create');
 Route::get('/agent.delete/{id}', [App\Http\Controllers\AgentController::class, 'supprimerAgent'])->name('agent.delete');
+Route::get('/load.secretariats/{ministereId}', [\App\Http\Controllers\AgentController::class, 'chargerSecretariats']);
+Route::get('/load.directions/{secretariatId}', [\App\Http\Controllers\AgentController::class, 'chargerDirections']);
+Route::get('/load.divisions/{directionId}', [\App\Http\Controllers\AgentController::class, 'chargerDivisions']);
+Route::get('/load.bureaux/{divisionId}', [\App\Http\Controllers\AgentController::class, 'chargerBureaux']);
 
 //Route::Pour afficher la liste des agents
 Route::get('/agents', [App\Http\Controllers\AgentController::class, 'showList'])->name('config.agents');

@@ -26,6 +26,10 @@ return new class extends Migration
             $table->string('status')->default('actif');
             $table->timestamp('agent_date_creation')->useCurrent();
             $table->unsignedBigInteger('province_id');
+            $table->unsignedBigInteger('ministere_id');
+            $table->unsignedBigInteger('secretariat_id');
+            $table->unsignedBigInteger('direction_id');
+            $table->unsignedBigInteger('division_id');
             $table->unsignedBigInteger('bureau_id');
             $table->unsignedBigInteger('fonction_id');
             $table->unsignedBigInteger('grade_id');

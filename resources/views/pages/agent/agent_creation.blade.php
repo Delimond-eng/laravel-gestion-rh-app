@@ -92,14 +92,41 @@
                                 </select>
                             </div>
 
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+                                <label for="ministere-select" class="form-label">Ministère<sup class="text-danger">*</sup></label>
+                                <select class="form-control" name="ministere_id" id="ministere-select" required>
+                                    <option hidden selected>Sélectionnez un ministère...</option>
+                                    @foreach($config['ministeres'] as $data)
+                                        <option value="{{$data->id}}">{{$data->ministere_libelle}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+                                <label for="secretariat-select" class="form-label">Secrétariat<sup class="text-danger">*</sup></label>
+                                <select class="form-control" name="secretariat_id" id="secretariat-select" required>
+                                    <option hidden selected>Sélectionnez un secrétariat...</option>
+                                </select>
+                            </div>
+
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+                                <label for="direction-select" class="form-label">Direction<sup class="text-danger">*</sup></label>
+                                <select class="form-control" name="direction_id" id="direction-select" required>
+                                    <option hidden selected>Sélectionnez une direction...</option>
+                                </select>
+                            </div>
+
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
+                                <label for="division-select" class="form-label">Division<sup class="text-danger">*</sup></label>
+                                <select class="form-control" name="division_id" id="division-select" required>
+                                    <option hidden selected>Sélectionnez une direction...</option>
+                                </select>
+                            </div>
 
                             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
                                 <label for="bureau-select" class="form-label">Bureau<sup class="text-danger">*</sup></label>
                                 <select class="form-control" name="bureau_id" id="bureau-select"  required>
                                     <option hidden selected>Sélectionnez un bureau...</option>
-                                    @foreach($config['bureaux'] as $bureau)
-                                        <option value="{{$bureau->id}}">{{$bureau->bureau_libelle}}</option>
-                                    @endforeach
                                 </select>
                             </div>
 

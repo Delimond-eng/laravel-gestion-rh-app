@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('equipes', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string("equipe_libelle");
-            $table->string("equipe_description")->nullable();
-            $table->unsignedBigInteger("user_id");
+            $table->string('role_libelle');
             $table->string('status')->default('actif');
-            $table->timestamp('date_creation')->useCurrent();
+            $table->timestamps();
         });
     }
 
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('equipes');
+        Schema::dropIfExists('roles');
     }
 };

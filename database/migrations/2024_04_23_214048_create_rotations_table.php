@@ -17,9 +17,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('equipe_id');
             $table->unsignedBigInteger('agent_id');
-            $table->unsignedBigInteger('direction_id');
-            $table->unsignedBigInteger('secretariat_id');
-            $table->unsignedBigInteger('ministere_id');
             $table->unsignedBigInteger('user_id');
             $table->string('jours');
             $table->string('status')->default('actif');

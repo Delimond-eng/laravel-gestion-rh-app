@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Division extends Model
 {
@@ -68,6 +69,16 @@ class Division extends Model
      * @var boolean
      */
     public $timestamps = false;
+
+
+    /**
+     * All bureaux
+     * @return HasMany
+    */
+    public function bureaux():HasMany
+    {
+        return $this->hasMany(Bureau::class, foreignKey: 'division_id', localKey: 'id');
+    }
 
     /**
      * Voir utilisateur session

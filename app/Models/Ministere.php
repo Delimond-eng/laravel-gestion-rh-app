@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Ministere extends Model
 {
@@ -67,6 +68,16 @@ class Ministere extends Model
      * @var boolean
      */
     public $timestamps = false;
+
+
+    /**
+     * All secretariats
+     * @return HasMany
+    */
+    public function secretariats() : HasMany
+    {
+        return $this->hasMany(Secretariat::class, foreignKey: 'ministere_id', localKey: 'id');
+    }
 
     /**
      * Voir utilisateur session

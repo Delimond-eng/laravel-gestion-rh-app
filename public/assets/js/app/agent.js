@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function (e){
     //Remise des zones de saisie en blanc
     document.getElementById('agent-form').reset();
 
-
     // Écouteur d'événement onchange pour le select du ministère
     document.getElementById('ministere-select').addEventListener('change', function() {
         const ministryId = this.value; // Récupérer la valeur sélectionnée du ministère

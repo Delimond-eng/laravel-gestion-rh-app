@@ -90,22 +90,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                            <div class="card custom-card">
-                                <div class="card-header justify-content-between">
-                                    <div class="card-title">Stats Hebdo</div>
-                                    <div class="dropdown">
-                                        <a href="javascript:void(0);" class="p-2 fs-12 text-muted" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Voir tout<i class="ri-arrow-down-s-line align-middle ms-1 d-inline-block"></i>
-                                        </a>
-
-                                    </div>
-                                </div>
-                                <div class="card-body py-0 ps-0">
-                                    <div id="crm-profits-earned"></div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div class="col-xl-8">
                         <div class="row">
@@ -219,30 +203,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-12">
-                                <div class="card custom-card">
-                                    <div class="card-header justify-content-between">
-                                        <div class="card-title">
-                                            Analyse des presences
-                                        </div>
-                                        <div class="dropdown">
-                                            <a href="javascript:void(0);" class="p-2 fs-12 text-muted" data-bs-toggle="dropdown" aria-expanded="false">
-                                                Voir tout<i class="ri-arrow-down-s-line align-middle ms-1 d-inline-block"></i>
-                                            </a>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a class="dropdown-item" href="javascript:void(0);">Aujourd'hui</a></li>
-                                                <li><a class="dropdown-item" href="javascript:void(0);">Cette semaine</a></li>
-                                                <li><a class="dropdown-item" href="javascript:void(0);">Dernière semaine</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="content-wrapper">
-                                            <div id="crm-revenue-analytics"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>

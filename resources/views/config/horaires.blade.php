@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('styles')
+    <link rel="stylesheet" href="{{asset('assets/libs/select2/css/select2.min.css')}}">
+@endsection
+
 @section('content')
     <div class="container-fluid">
         <!-- Page Header -->
@@ -19,7 +23,7 @@
         <!-- Start:: row-1 -->
         <div class="row">
             <div class="col-md-10">
-                <form method="POST" action="{{route('config.horaires.create')}}" class="card custom-card">
+                <form method="POST" id="form-horaire" action="{{route('config.horaires.create')}}" class="card custom-card">
                     @csrf
                     <div class="card-header">
                         <div class="card-title">
@@ -51,34 +55,32 @@
                             <input type="text" name="nbre_retard"  class="form-control" id="nombreRetard" placeholder="cumule de retard pour notifier..." required>
                         </div>
 
-                        <div class="col-md-4 col-sm-12 mt-2">
-                            <label for="secretariatId" class="form-label">Secrétariat<sup class="text-danger">*</sup> </label>
-                            <select name="secretariat_id" class="form-select form-select-lg" id="secretariatId">
-                                <option hidden selected>Sélectionnez un secrétariat...</option>
-                                @foreach($secretariats as $data)
-                                    <option value="{{$data->id}}">{{$data->secretariat_libelle}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-md-4 col-sm-12 mt-2">
-                            <label for="directionId" class="form-label">Direction<sup class="text-danger">*</sup> </label>
-                            <select name="direction_id" class="form-select form-select-lg" id="directionId">
-                                <option hidden selected>Sélectionnez une direction...</option>
-                                @foreach($directions as $data)
-                                    <option value="{{$data->id}}">{{$data->direction_libelle}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-md-4 col-sm-12 mt-2">
-                            <label for="ministereId" class="form-label">Ministère<sup class="text-danger">*</sup> </label>
-                            <select name="ministere_id" class="form-select form-select-lg" id="ministereId">
-                                <option hidden selected>Sélectionnez une direction...</option>
+                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                            <label for="ministere-select" class="form-label">Ministère<sup class="text-danger">*</sup></label>
+                            <select class="form-control" name="ministere_id" id="ministere-select" required>
+                                <option hidden selected>Sélectionnez un ministère...</option>
                                 @foreach($ministeres as $data)
                                     <option value="{{$data->id}}">{{$data->ministere_libelle}}</option>
                                 @endforeach
                             </select>
                         </div>
+
+                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                            <label for="secretariat-select" class="form-label">Secrétariat<sup class="text-danger">*</sup></label>
+                            <select class="form-control" name="secretariat_id" id="secretariat-select" required>
+                                <option hidden selected>Sélectionnez un secrétariat...</option>
+                            </select>
+                        </div>
+
+                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                            <label for="direction-select" class="form-label">Direction<sup class="text-danger">*</sup></label>
+                            <select class="form-control" name="direction_id" id="direction-select" required>
+                                <option hidden selected>Sélectionnez une direction...</option>
+                            </select>
+                        </div>
                     </div>
+
+
 
                     <div class="card-footer d-flex justify-content-end">
                         <button class="btn btn-dark me-2" type="reset">Annuler</button>
@@ -133,4 +135,10 @@
         </div>
         <!-- End:: row-1 -->
     </div>
+@endsection
+
+@section('scripts')
+    <script src="{{asset('assets/libs/jquery/jquery.js')}}"></script>
+    <script src="{{asset('assets/libs/select2/js/select2.min.js')}}"></script>
+    <script src="{{asset('assets/js/app/horaire.js')}}"></script>
 @endsection

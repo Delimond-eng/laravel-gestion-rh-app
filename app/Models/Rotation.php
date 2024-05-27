@@ -95,4 +95,19 @@ class Rotation extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    /*public function getJoursAttribute($value): array
+    {
+        return explode(',', $value);
+    }*/
+
+    /*public function setJoursAttribute($value)
+    {
+        if (is_array($value)) {
+            $this->attributes['jours'] = implode(',', $value);
+        } else {
+            $joursArray = explode(',', $value);
+            $this->attributes['jours'] = implode(',', $joursArray);
+        }
+    }*/
 }

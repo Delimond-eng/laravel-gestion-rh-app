@@ -42,13 +42,16 @@
     <!-- CHOICES CSS -->
     <link rel="stylesheet" href="{{asset('assets/libs/choices.js/public/assets/styles/choices.min.css')}}">
 
+
+    <link rel="stylesheet" href="{{asset('https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css')}}">
+    <link rel="stylesheet" href="{{asset('https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('https://cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap5.min.css')}}">
     <!-- STYLES SECTIONS -->
     @yield('styles')
     <!-- STYLES SECTIONS -->
 
     <!-- CHOICES JS -->
     <script src="{{asset('assets/libs/choices.js/public/assets/scripts/choices.min.js')}}"></script>
-
     <!-- MAIN JS -->
     <script src="{{asset('assets/js/main.js')}}"></script>
 

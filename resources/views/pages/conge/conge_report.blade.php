@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('styles')
+    <link rel="stylesheet" href="{{asset('https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css')}}">
+    <link rel="stylesheet" href="{{asset('https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('https://cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap5.min.css')}}">
+@endsection
+
 @section('content')
     <div class="container-fluid">
         <!-- Page Header -->
@@ -29,20 +35,21 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table text-nowrap" id="agent_conge">
+                        <div class="table-responsive overflow-x-hidden">
+                            <table class="table text-nowrap dt-responsive overflow-x-hidden" id="conge_table">
                                 <thead class="table-primary">
-                                <tr>
-                                    <th scope="col">Date création</th>
-                                    <th scope="col">Agent concerné</th>
-                                    <th scope="col">Date début</th>
-                                    <th scope="col">Date Fin</th>
-                                    <th scope="col">Type</th>
-                                    <th scope="col">Jrs consommés</th>
-                                    <th scope="col">Jrs restant</th>
-                                    <th scope="col">Créé par</th>
-                                    <th scope="col"></th>
-                                </tr>
+                                    <tr>
+                                        <th scope="col">Date création</th>
+                                        <th scope="col">Agent concerné</th>
+                                        <th scope="col">Date début</th>
+                                        <th scope="col">Date Fin</th>
+                                        <th scope="col">Type</th>
+                                        <th scope="col">Nombre jours</th>
+                                        <th scope="col">Jrs consommés</th>
+                                        <th scope="col">Jrs restant</th>
+                                        <th scope="col">Créé par</th>
+                                        <th scope="col"></th>
+                                    </tr>
                                 </thead>
                                 <tbody>
 
@@ -53,8 +60,9 @@
                                         <td>{{$item->conge_date_debut->format('d/m/Y')}}</td>
                                         <td>{{$item->conge_date_fin->format('d/m/Y')}}</td>
                                         <td>{{$item->type->conge_type_libelle}}</td>
-                                        <td>0</td>
-                                        <td>0</td>
+                                        <td>{{$item->nb_jours}}</td>
+                                        <td>{{$item->jours_consommes}}</td>
+                                        <td>{{$item->jours_restants}}</td>
                                         <td>{{$item->user->name}}</td>
                                         <td>
                                             <div class="hstack gap-2 fs-15">
@@ -77,6 +85,18 @@
 @endsection
 
 @section('scripts')
+    <script src="{{asset('https://code.jquery.com/jquery-3.6.1.min.js')}}" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <!-- DATATABLES CDN JS -->
+    <script src="{{asset('https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js')}}"></script>
+    <script src="{{asset('https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js')}}"></script>
+    <script src="{{asset('https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js')}}"></script>
+    <script src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.6/pdfmake.min.js')}}"></script>
+    <script src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js')}}"></script>
+    <script src="{{asset('https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js')}}"></script>
 
+    <script src="{{asset('assets/js/app/init_datatables.js')}}"></script>
 @endsection
 

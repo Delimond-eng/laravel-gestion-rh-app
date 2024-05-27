@@ -24,7 +24,7 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
 //Route::Pour naviguer à la page de creation agent
-Route::get('/agents.create/{id?}', [App\Http\Controllers\AgentController::class, 'navigateToCreatePage']);
+Route::get('/agents.create', [App\Http\Controllers\AgentController::class, 'navigateToCreatePage']);
 Route::post('/agents.create', [App\Http\Controllers\AgentController::class, 'creerAgent'])->name('agents.create');
 Route::get('/agent.delete/{id}', [App\Http\Controllers\AgentController::class, 'supprimerAgent'])->name('agent.delete');
 Route::get('/load.secretariats/{ministereId}', [\App\Http\Controllers\AgentController::class, 'chargerSecretariats']);
@@ -87,6 +87,15 @@ Route::post('/fonctions', [ConfigController::class, 'creerFonction'])->name('con
 Route::get('/conge.attribution', [CongeController::class, 'attributionConge'])->name('conge.attribution');
 Route::get('/conge.reports', [CongeController::class, 'rapportConges'])->name('conge.reports');
 Route::post('/conge.attribution', [CongeController::class, 'creerAttribution'])->name('conge.attribution.create');
+
+
+//Route: pour gérer les accès utilisateurs
+Route::get('/users.manager', [\App\Http\Controllers\UserController::class, 'index'])->name('users.manager');
+Route::post('/users.store', [\App\Http\Controllers\UserController::class, 'store'])->name('users.store');
+
+//Route: Gerer les absences justifiées
+Route::get('/absences.manager', [\App\Http\Controllers\PresenceController::class, 'viewAbsences'])->name('absences.manager');
+Route::post('/absence.create', [\App\Http\Controllers\PresenceController::class, 'createAbsence'])->name('absence.create');
 
 //Route:: pour supprimer de la base de données via la table
 Route::get('/delete/{table}/{id}', function (string $table, int $id){

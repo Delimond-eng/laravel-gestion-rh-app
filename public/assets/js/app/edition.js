@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function (){
                     selectedDays.push(cb.value);
                 }
             });
-            selectedDaysInput.value = selectedDays.join(', ');
+            selectedDaysInput.value = selectedDays.join(',');
             console.log(selectedDays.toString())
         });
     });

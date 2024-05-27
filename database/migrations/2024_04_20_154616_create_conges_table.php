@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->timestamp('conge_date_debut')->nullable();
             $table->timestamp('conge_date_fin')->nullable();
+            $table->integer('nb_jours');
             $table->string('conge_motif')->nullable();
             $table->string('status')->default('actif');
             $table->unsignedBigInteger('agent_id');

@@ -438,6 +438,7 @@ class ConfigController extends Controller
     public function configRotation():Renderable{
         $equipes= Equipe::where("status", "actif")->get();
         $agents= Agent::where("status", "actif")->get();
+        $user = Auth::user();
         $rotations= Rotation::with('equipe')
                     ->with('agent.province')
                     ->with('agent.ministere')
@@ -447,9 +448,13 @@ class ConfigController extends Controller
                     ->with('agent.bureau')
                     ->with('agent.fonction')
                     ->with('agent.grade')
+                    ->with('agent',function ($query) use ($user){
+                        if ($user->role !== 'superadmin'){
+                            return $query->where(''.$user->role_key.'', $user->role_key_id);
+                        }
+                    })
                     ->with('user')
-                    ->where("status", "actif")
-                    ->get();
+                    ->where("status", "actif")->get();
         return view('config/rotations', [
             "title" => "Paramètre&Rotations",
             "equipes" => $equipes,
@@ -487,20 +492,23 @@ class ConfigController extends Controller
      * @return Renderable
      */
     public function configHoraireTravail():Renderable{
+        $user = Auth::user();
         $secretariats = Secretariat::where("status", "actif")->get();
         $directions = Direction::where("status", "actif")->get();
         $ministeres = Ministere::where("status", "actif")->get();
         $horaires = Horaire::with('secretariat')
                     ->with('direction')
                     ->with('user')
-                    ->where('status', 'actif')
-                    ->get();
+                    ->where('status', 'actif');
+        if($user->role  !== 'superadmin'){
+            $horaires->where(''.$user->role_key.'', $user->role_key_id);
+        }
         return view('config/horaires', [
             "title"=>"Paramètre&horaireTravail",
             "directions"=>$directions,
             "secretariats"=>$secretariats,
             "ministeres"=>$ministeres,
-            "horaires"=>$horaires
+            "horaires"=>$horaires->get()
         ]);
     }
 

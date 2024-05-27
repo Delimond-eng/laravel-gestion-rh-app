@@ -1,10 +1,12 @@
-@extends('layouts.app')
-
 @section('styles')
     <link rel="stylesheet" href="{{asset('https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css')}}">
     <link rel="stylesheet" href="{{asset('https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('https://cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap5.min.css')}}">
 @endsection
+
+
+@extends('layouts.app')
+
 
 @section('content')
     <div class="container-fluid">
@@ -35,7 +37,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
+                        <div class="table-responsive overflow-x-hidden">
                             <table class="table text-nowrap dt-responsive overflow-x-hidden" id="agent_table">
                                 <thead class="table-primary">
                                 <tr>

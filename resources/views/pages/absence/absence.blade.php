@@ -4,12 +4,12 @@
     <div class="container-fluid">
         <!-- Page Header -->
         <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
-            <h1 class="page-title fw-semibold fs-18 mb-0">Equipes</h1>
+            <h1 class="page-title fw-semibold fs-18 mb-0">Gestion des absences</h1>
             <div class="ms-md-1 ms-0">
                 <nav>
                     <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="javascript:void(0);">Paramètres</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Equipes</li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">Rh</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">absences</li>
                     </ol>
                 </nav>
             </div>
@@ -19,11 +19,11 @@
         <!-- Start:: row-1 -->
         <div class="row">
             <div class="col-md-6">
-                <form method="POST" action="{{route('config.equipe.create')}}" class="card custom-card">
+                <form method="post" id="absence-form" action="{{route('absence.create')}}" class="card custom-card">
                     @csrf
                     <div class="card-header">
                         <div class="card-title">
-                            Formulaire de création
+                            Absences justifiées
                         </div>
                     </div>
                     <div class="card-body">
@@ -34,17 +34,22 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i class="bi bi-x"></i></button>
                             </div>
                         @endif
+                        <input type="text" name="id" value="{{isset($absence) ? $absence->id : ''}}" hidden>
 
-                        <div class="col-md-12 col-sm-12 mb-3">
-                            <label for="libelle" class="form-label">Libellé Equipe<sup class="text-danger">*</sup> </label>
-                            <input type="text" name="libelle" class="form-control" id="libelle" placeholder="Saisir le nom l'equipe..." required>
+                        <div class="col-md-12 col-sm-12">
+                            <label for="motif" class="form-label">Motif<sup class="text-danger">*</sup> </label>
+                            <textarea name="motif" class="form-control" cols="20" id="motif" rows="5" placeholder="Saisissez le motif de l'absence..."></textarea>
                         </div>
 
                         <div class="col-md-12 col-sm-12">
-                            <label for="desc" class="form-label">Description<sup class="text-danger">(Optionnelle)</sup> </label>
-                            <textarea name="description" id="desc"  class="form-control"></textarea>
+                            <label for="agent-select" class="form-label">Agent<sup class="text-danger">*</sup> </label>
+                            <select class="form-select form-select-lg" id="agent-select" name="agent_id">
+                                <option hidden selected>Sélectionnez un agent...</option>
+                                @foreach($agents as $item)
+                                    <option value="{{$item->id}}">{{$item->agent_matricule}}|{{$item->agent_nom}} {{$item->agent_prenom}}</option>
+                                @endforeach
+                            </select>
                         </div>
-
                     </div>
 
                     <div class="card-footer d-flex justify-content-end">
@@ -58,7 +63,7 @@
                 <div class="card custom-card">
                     <div class="card-header">
                         <div class="card-title">
-                            Liste des equipes
+                            Liste des absences
                         </div>
                     </div>
                     <div class="card-body">
@@ -66,18 +71,26 @@
                             <table class="table text-nowrap table-sm">
                                 <thead>
                                 <tr>
-                                    <th scope="col">Equipe</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Agent</th>
+                                    <th scope="col">motif</th>
+                                    <th scope="col"></th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($equipes as $item)
-                                        <tr>
-                                            <td>{{$item->equipe_libelle}}</td>
-                                            <td>
-                                                <a href="{{url('/delete/equipes/'.$item->id)}}" class="btn btn-icon btn-sm btn-danger-transparent rounded-pill"><i class="ri-delete-bin-line"></i></a>
-                                            </td>
-                                        </tr>
+                                    @foreach($absences as $item)
+                                    <tr>
+                                        <td>{{$item->created_at->format('d/m/Y')}}</td>
+                                        <td>{{$item->agent->agent_matricule.'| '.$item->agent->agent_nom.' '.$item->agent->agent_prenom}} </td>
+                                        <td>{{$item->absence_motif}}</td>
+                                        <td>
+                                            <div class="hstack gap-2 fs-15">
+                                                <a href="{{ url('/delete/absences/'.$item->id) }}"
+                                                   class="btn btn-icon btn-sm btn-dark rounded-pill"><i
+                                                        class="ri-delete-bin-4-line"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -89,3 +102,6 @@
         <!-- End:: row-1 -->
     </div>
 @endsection
+
+
+

@@ -6,14 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Presence extends Model
+class Absence extends Model
 {
+    use HasFactory;
+
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'presences';
+    protected $table = 'absences';
 
     /**
      * The primary key for the model.
@@ -28,11 +30,9 @@ class Presence extends Model
      * @var array
      */
     protected $fillable = [
-        'presence_date',
-        'presence_heure_arrive',
-        'presence_heure_depart',
-        'status',
-        'agent_id'
+        'absence_motif',
+        'agent_id',
+        'user_id',
     ];
 
     /**
@@ -51,7 +51,8 @@ class Presence extends Model
      * @var array
      */
     protected $casts = [
-        'presence_date'=>'datetime:d/m/Y H:i'
+        'created_at'=>'datetime:d/m/Y H:i',
+        'updated_at'=>'datetime:d/m/Y H:i',
     ];
 
     /**
@@ -60,23 +61,26 @@ class Presence extends Model
      * @var array
      */
     protected $dates = [
-        'presence_date'
+        'created_at',
+        'updated_at',
     ];
 
     /**
-     * Indicates if the model should be timestamped.
-     *
-     * @var boolean
-     */
-    public $timestamps = false;
-
-
-    /**
-     * Voir agent
+     * agent concerné
      * @return BelongsTo
      */
     public function agent():BelongsTo
     {
-        return $this->belongsTo(Agent::class, 'agent_id');
+        return $this->belongsTo(Agent::class, foreignKey: 'agent_id');
+    }
+
+
+    /**
+     * Voir utilisateur session
+     * @return BelongsTo
+     */
+    public function user():BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

@@ -1,7 +1,7 @@
 <aside class="app-sidebar sticky" id="sidebar">
     <!-- Start::main-sidebar-header -->
     <div class="main-sidebar-header">
-        <a href="index-2.html" class="header-logo">
+        <a href="/" class="header-logo">
             <!--<img src="assets/images/brand-logos/desktop-logo.png" alt="logo" class="desktop-logo">
             <img src="assets/images/brand-logos/toggle-logo.png" alt="logo" class="toggle-logo">
             <img src="assets/images/brand-logos/desktop-dark.png" alt="logo" class="desktop-dark">
@@ -71,7 +71,7 @@
                             <a href="aboutus.html" class="side-menu__item">Rapport des absences</a>
                         </li>
                         <li class="slide">
-                            <a href="aboutus.html" class="side-menu__item">Absences justifiés</a>
+                            <a href="{{url('/absences.manager')}}" class="side-menu__item">Absences justifiés</a>
                         </li>
                     </ul>
                 </li>
@@ -102,32 +102,28 @@
                 </li>
                 <!-- End::slide -->
 
-                <!-- Start::slide__category -->
-                <li class="slide__category"><span class="category-name">Configuration</span></li>
-                <!-- End::slide__category -->
-
-                <!-- Start::slide -->
-                <li class="slide has-sub">
-                    <a href="javascript:void(0);" class="side-menu__item">
-                        <i class="bx bxs-user-account side-menu__icon"></i>
-                        <span class="side-menu__label">Gestion utilisateurs</span>
-                        <i class="fe fe-chevron-right side-menu__angle"></i>
-                    </a>
-                    <ul class="slide-menu child1">
-
-                        <li class="slide">
-                            <a href="javascript:void(0);" class="side-menu__item">Création</a>
-                        </li>
-                        <li class="slide">
-                            <a href="aboutus.html" class="side-menu__item">Rôles & attribution</a>
-                        </li>
 
 
-                    </ul>
-                </li>
+                @if(Auth::user()->role === 'superadmin')
+
+                    <!-- Start::slide__category -->
+                    <li class="slide__category"><span class="category-name">Configuration</span></li>
+                    <!-- End::slide__category -->
+
+                    <!-- Start::slide -->
+                    <li class="slide">
+                        <a href="{{url('/users.manager')}}" class="side-menu__item">
+                            <i class="bx bxs-user-account side-menu__icon"></i>
+                            <span class="side-menu__label">Gestion utilisateurs</span>
+                        </a>
+                    </li>
+                @endif
                 <!-- End::slide -->
 
+
+
                 <!-- Start::slide -->
+                @if(Auth::user()->role === 'superadmin')
                 <li class="slide has-sub">
                     <a href="javascript:void(0);" class="side-menu__item">
                         <i class="bx bx-cog side-menu__icon"></i>
@@ -135,7 +131,6 @@
                         <i class="fe fe-chevron-right side-menu__angle"></i>
                     </a>
                     <ul class="slide-menu child1">
-
                         <li class="slide has-sub">
                             <a href="javascript:void(0);" class="side-menu__item">Entités
                                 <i class="fe fe-chevron-right side-menu__angle"></i></a>
@@ -185,6 +180,7 @@
                         </li>
                     </ul>
                 </li>
+                @endif
                 <!-- End::slide -->
 
 

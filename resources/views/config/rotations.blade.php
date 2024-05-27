@@ -80,6 +80,7 @@
                                     <input class="form-check-input cb-day" type="checkbox" id="inlineCheckbox5" value="Vendredi">
                                     <label class="form-check-label" for="inlineCheckbox5">Vendredi</label>
                                 </div>
+                                <!--
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input cb-day" type="checkbox" id="inlineCheckbox6" value="Samedi">
                                     <label class="form-check-label" for="inlineCheckbox6">Samedi</label>
@@ -88,6 +89,7 @@
                                     <input class="form-check-input cb-day" type="checkbox" id="inlineCheckbox7" value="Dimanche">
                                     <label class="form-check-label" for="inlineCheckbox7">Dimanche</label>
                                 </div>
+                                -->
                             </div>
                         </div>
 
@@ -125,8 +127,8 @@
                                         <tr>
                                             <td>{{$item->equipe->equipe_libelle}}</td>
                                             <td>{{$item->agent->agent_matricule.'|'.$item->agent->agent_nom.' '.$item->agent->agent_postnom.' '.$item->agent->agent_prenom }}</td>
-                                            <td>{{$item->direction->direction_libelle}}</td>
-                                            <td>{{$item->ministere->ministere_libelle}}</td>
+                                            <td>{{$item->agent->direction->direction_libelle}}</td>
+                                            <td>{{$item->agent->ministere->ministere_libelle}}</td>
                                             <td>{{$item->jours}}</td>
                                             <td>
                                                 <a href="{{url('/delete/rotations/'.$item->id)}}" class="btn btn-icon btn-sm btn-danger-transparent rounded-pill"><i class="ri-delete-bin-line"></i></a>

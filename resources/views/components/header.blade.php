@@ -8,7 +8,7 @@
             <!-- Start::header-element -->
             <div class="header-element">
                 <div class="horizontal-logo">
-                    <a href="index-2.html" class="header-logo">
+                    <a href="/" class="header-logo">
                         <!--<img src="assets/images/brand-logos/logo-02.png" alt="logo" class="desktop-logo">
                         <img src="assets/images/brand-logos/logo-02.png" alt="logo" class="toggle-logo">
                         <img src="assets/images/brand-logos/logo-02.png" alt="logo" class="desktop-dark">

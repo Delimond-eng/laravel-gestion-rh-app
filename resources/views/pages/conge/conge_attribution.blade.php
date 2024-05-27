@@ -43,12 +43,12 @@
                     @endif
                     <div class="row g-2">
                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-                            <label for="matricule" class="form-label">Date du debut <sup class="text-danger">*</sup> </label>
+                            <label for="start_at" class="form-label">Date du debut <sup class="text-danger">*</sup> </label>
                             <input type="date" name="date_debut" class="form-control" id="start_at"  required>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-                            <label for="end_at" class="form-label">Date de fin <sup class="text-danger">*</sup></label>
-                            <input type="date" name=date_fin class="form-control" id="end_at"  required>
+                            <label for="nb_days" class="form-label">Nombre des jours <sup class="text-danger">*</sup></label>
+                            <input type="number" name="nb_jours" class="form-control" id="nb_days" placeholder="Entrez le nombre de jours"  required>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
                             <label for="type" class="form-label">Type de congé<sup class="text-danger">*</sup></label>

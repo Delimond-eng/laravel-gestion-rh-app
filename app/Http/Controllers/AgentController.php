@@ -105,16 +105,19 @@ class AgentController extends Controller
     */
     public function showList() : Renderable
     {
+        $user = Auth::user();
         $agents = Agent::with('province')
                 ->with('bureau')
                 ->with('fonction')
                 ->with('grade')
                 ->with('user')
-                ->where('status', 'actif')
-                ->get();
+                ->where('status', 'actif');
+        if($user->role  !== 'superadmin'){
+            $agents->where(''.$user->role_key.'', $user->role_key_id);
+        }
         return view('pages/agent/agent_liste', [
             "title"=>"Liste des agents",
-            "agents"=>$agents
+            "agents"=>$agents->get()
         ]);
     }
 

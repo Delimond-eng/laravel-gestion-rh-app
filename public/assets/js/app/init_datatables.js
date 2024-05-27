@@ -1,12 +1,20 @@
 $(document).ready(function (){
-    $("#agent_table").DataTable({
-        language:{
-            searchPlaceholder:"Recherche agent...",
-            sSearch:"",
-        },
-        scrollX: true,
-        scrollXInner: "100%",
+    if($('#conge_table').length){
+        $("#conge_table").DataTable({
+            language:{
+                searchPlaceholder:"Recherche agent en congé...",
+                sSearch:"",
+            },
+        });
+    }
+   if( $('#agent_table').length){
+        $("#agent_table").DataTable({
+            language:{
+                searchPlaceholder:"Recherche agent...",
+                sSearch:"",
+            },
+        });
+    }
 
-        pageLength:25,
-    });
+
 });

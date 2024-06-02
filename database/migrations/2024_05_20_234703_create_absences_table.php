@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('absences', function (Blueprint $table) {
             $table->id();
-            $table->enum('absence_type', ['absence', 'absence_justifiee'])->default('absence');
+            $table->string('absence_type')->default('absence justifié');
             $table->text('absence_motif')->nullable();
+            $table->string('status')->default('actif');
             $table->unsignedBigInteger('agent_id');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();

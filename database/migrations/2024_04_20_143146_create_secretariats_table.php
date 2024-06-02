@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('secretariats', function (Blueprint $table) {
             $table->id();
             $table->string('secretariat_libelle')->unique();
-            $table->string('secretariat_description');
+            $table->string('secretariat_description')->nullable();
             $table->string('status')->default('actif');
             $table->unsignedBigInteger('ministere_id');
             $table->unsignedBigInteger('user_id');

@@ -21,14 +21,15 @@ class UserSeeder extends Seeder
                 'name' => 'Gaston dev',
                 'email' => 'admin@dev.com',
                 'password' => Hash::make('123456'),
+                'role'=>'superadmin'
             ],
             [
                 'name' => 'Laurent Bukasa',
                 'email' => 'laurent@gmail.com',
                 'password' => Hash::make('123456'),
+                'role'=>'superadmin'
             ]
         ];
         DB::table('users')->insert($users);
     }
 }
-

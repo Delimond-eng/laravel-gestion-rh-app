@@ -65,11 +65,9 @@
                     </a>
                     <ul class="slide-menu child1">
                         <li class="slide">
-                            <a href="javascript:void(0);"  class="side-menu__item">Rapport des présences</a>
+                            <a href=" {{ url('presences.reports') }}"  class="side-menu__item">Rapport des présences</a>
                         </li>
-                        <li class="slide">
-                            <a href="aboutus.html" class="side-menu__item">Rapport des absences</a>
-                        </li>
+
                         <li class="slide">
                             <a href="{{url('/absences.manager')}}" class="side-menu__item">Absences justifiés</a>
                         </li>

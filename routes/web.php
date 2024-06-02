@@ -97,6 +97,8 @@ Route::post('/users.store', [\App\Http\Controllers\UserController::class, 'store
 Route::get('/absences.manager', [\App\Http\Controllers\PresenceController::class, 'viewAbsences'])->name('absences.manager');
 Route::post('/absence.create', [\App\Http\Controllers\PresenceController::class, 'createAbsence'])->name('absence.create');
 
+Route::get('/presences.reports', [\App\Http\Controllers\PresenceController::class, 'viewReports' ])->name('presences.reports');
+
 //Route:: pour supprimer de la base de données via la table
 Route::get('/delete/{table}/{id}', function (string $table, int $id){
     DB::table($table)

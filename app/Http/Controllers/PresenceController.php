@@ -9,6 +9,7 @@ use App\Models\Horaire;
 use App\Models\Presence;
 use App\Models\Rotation;
 use App\Services\HolidaysService;
+use App\Services\PresenceReportService;
 use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
@@ -138,79 +139,6 @@ class PresenceController extends Controller
         }
 
     }
-
-
-    /**
-     * generer la liste des presences
-     * @param null $date
-     * @return JsonResponse
-     */
-    public function viewPresencesReport($date = null): JsonResponse
-    {
-        $date = $date ? Carbon::parse($date) : Carbon::now();
-
-        // Récupérer tous les agents
-        $agents = Agent::with(['province','ministere', 'secretariat', 'direction','division','bureau','fonction','grade'])->get();
-        $reportData = [];
-
-        // Parcourir chaque agent
-        foreach ($agents as $agent) {
-            $presenceStatus = 'Présent';
-            $rapport = [];
-
-            // Vérifier si l'agent est en congé pour cette journée
-            $conge = Conge::where('agent_id', $agent->id)
-                ->whereDate('conge_date_debut', '<=', $date)
-                ->whereDate('conge_date_fin', '>=', $date)
-                ->first();
-
-            if ($conge) {
-                // Si l'agent est en congé, le statut de présence est "Congé"
-                $presenceStatus = 'Congé';
-                $rapport['status'] = 'en congé';
-                $rapport['details'] = $conge->conge_motif;
-            }
-
-            // Vérifier si l'agent est en rotation pour cette journée
-            $rotation = Rotation::where('agent_id', $agent->id)
-                ->whereRaw("FIND_IN_SET('$date->isoFormat('dddd')', jours)")
-                ->first();
-
-            if ($rotation && $rotation->jours !== $date->isoFormat('dddd')) {
-                // Si l'agent est en rotation mais ne doit pas travailler ce jour-là, le statut de présence est "Rotation"
-                $presenceStatus = 'Rotation';
-                $rapport['status'] = 'en rotation';
-            }
-            // Vérifier si l'agent est absent pour cette journée
-            $absence = Absence::where('agent_id', $agent->id)
-                ->whereDate('created_at', $date)
-                ->first();
-
-            if ($absence) {
-                // Si l'agent est absent, le statut de présence est "Absent"
-                // $presenceStatus = 'Absent';
-                if ($absence->absence_type === 'absence_justifiee') {
-                    $presenceStatus = 'Absence justifiée';
-                }
-                $rapport['status'] = 'absent';
-                $rapport['details'] = $absence->absence_motif;
-            }
-            // Ajouter les données de l'agent au rapport
-            $reportData[] = [
-                'agent' => $agent,
-                'rapport' => $rapport,
-            ];
-        }
-        // Retourner les données du rapport
-        return response()->json([
-            "status"=>"success",
-            "datas"=>$reportData
-        ]);
-    }
-
-
-
-
     /**
      * Générer un rapport des absences
      * @param null $date
@@ -239,7 +167,6 @@ class PresenceController extends Controller
             if ($conge) {
                 continue;
             }
-
             // Vérifier si l'agent est en rotation pour cette journée
             $rotation = Rotation::where('agent_id', $agent->id)
                 ->whereRaw("FIND_IN_SET('$date->isoFormat('dddd')', jours)")
@@ -322,4 +249,106 @@ class PresenceController extends Controller
     }
 
 
+    /**
+     * generer la liste des presences
+     * @return JsonResponse
+     */
+    public function generateReports(Request $request): JsonResponse
+    {
+        $filters = $request->query();
+
+        $dateDebut = $filters['date_debut'] ?? null;
+        $dateFin = $filters['date_fin'] ?? null;
+        $holidaysService = new HolidaysService();
+        $presenceReportService = new PresenceReportService($holidaysService);
+
+        $ministereId = $filters['ministere_id'] ?? null;
+        $secretariatId = $filters['secretariat_id'] ?? null;
+        $directionId = $filters['direction_id'] ?? null;
+        $divisionId = $filters['division_id'] ?? null;
+        $bureauId = $filters['bureau_id'] ?? null;
+
+        $filterArray = [];
+        if ($ministereId) {
+            $filterArray['ministere_id'] = $ministereId;
+        }
+        if ($secretariatId) {
+            $filterArray['secretariat_id'] = $secretariatId;
+        }
+        if ($directionId) {
+            $filterArray['direction_id'] = $directionId;
+        }
+        if ($divisionId) {
+            $filterArray['division_id'] = $divisionId;
+        }
+        if ($bureauId) {
+            $filterArray['bureau_id'] = $bureauId;
+        }
+
+        $report = [];
+
+        if ($dateDebut && $dateFin) {
+            // Generate report for an interval with filters
+            $report = $presenceReportService->generatePresenceReport($dateDebut, $dateFin, $filterArray);
+        } elseif ($dateDebut) {
+            // Generate report for a specific date with filters
+            $report = $presenceReportService->generatePresenceReport($dateDebut, $dateDebut, $filterArray);
+        } else {
+            // Generate report for today with filters
+            $today = Carbon::now()->format('Y-m-d');
+            $report = $presenceReportService->generatePresenceReport($today, $today, $filterArray);
+        }
+        return response()->json([
+            "status" => "success",
+            "reports" => $report
+        ]);
+    }
+
+    public function viewReports(Request $request){
+        $filters = $request->query();
+        $dateDebut = $filters['date_debut'] ?? null;
+        $dateFin = $filters['date_fin'] ?? null;
+        $holidaysService = new HolidaysService();
+        $presenceReportService = new PresenceReportService($holidaysService);
+
+        $ministereId = $filters['ministere_id'] ?? null;
+        $secretariatId = $filters['secretariat_id'] ?? null;
+        $directionId = $filters['direction_id'] ?? null;
+        $divisionId = $filters['division_id'] ?? null;
+        $bureauId = $filters['bureau_id'] ?? null;
+
+        $filterArray = [];
+        if ($ministereId) {
+            $filterArray['ministere_id'] = $ministereId;
+        }
+        if ($secretariatId) {
+            $filterArray['secretariat_id'] = $secretariatId;
+        }
+        if ($directionId) {
+            $filterArray['direction_id'] = $directionId;
+        }
+        if ($divisionId) {
+            $filterArray['division_id'] = $divisionId;
+        }
+        if ($bureauId) {
+            $filterArray['bureau_id'] = $bureauId;
+        }
+
+        $report = [];
+        if ($dateDebut && $dateFin) {
+            // Generate report for an interval with filters
+            $report = $presenceReportService->generatePresenceReport($dateDebut, $dateFin, $filterArray);
+        } elseif ($dateDebut) {
+            // Generate report for a specific date with filters
+            $report = $presenceReportService->generatePresenceReport($dateDebut, $dateDebut, $filterArray);
+        } else {
+            // Generate report for today with filters
+            $today = Carbon::now()->format('Y-m-d');
+            $report = $presenceReportService->generatePresenceReport($today, $today, $filterArray);
+        }
+        return view('pages/reports/presences_report',[
+            "title"=>"Rapports des présences",
+            "reports" => $report
+        ]);
+    }
 }

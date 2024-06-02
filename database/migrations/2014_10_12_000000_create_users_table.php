@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('role')->nullable();
             $table->string('role_key')->nullable();
+            $table->string('status')->default('actif');
             $table->unsignedBigInteger('role_key_id')->nullable();
             $table->rememberToken();
             $table->timestamps();

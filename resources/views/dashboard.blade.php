@@ -8,19 +8,19 @@
                 <p class="fw-semibold fs-18 mb-0">Bienvenue, {{Auth::user()->name}} !</p>
                 <span class="fs-semibold text-muted">Le Tableau de bord !</span>
             </div>
-            <div class="btn-list mt-md-0 mt-2">
+            {{--  <div class="btn-list mt-md-0 mt-2">
                 <select class="form-control d-none d-sm-none d-lg-block d-xxl-block">
                     <option value="Tout">Tout</option>
                     <option value="Tout">Direction</option>
                     <option value="Tout">Province</option>
                     <option value="Tout">Secrétariat</option>
                 </select>
-            </div>
+            </div>  --}}
         </div>
         <!-- End::page-header -->
 
         <!-- Start::row-1 -->
-        <div class="row">
+        {{--  <div class="row">
             <div class="col-md-12 col-xl-12">
                 <div class="row">
                     <div class="col-xl-4">
@@ -208,7 +208,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>  --}}
         <!-- End::row-1 -->
     </div>
 @endsection

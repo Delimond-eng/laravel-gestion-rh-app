@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('conge_types', function (Blueprint $table) {
             $table->id();
             $table->string('conge_type_libelle')->unique();
-            $table->string('conge_type_description');
+            $table->string('conge_type_description')->nullable();
             $table->string('status')->default('actif');
             $table->unsignedBigInteger('user_id');
             $table->timestamp('conge_type_date_creation')->useCurrent();

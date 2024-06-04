@@ -32,20 +32,22 @@
                         <div class="card-title">
                             Rapports des présences des agents
                         </div>
-                        <div class="d-flex align-items-center align-content-center ">
+                        <form class="d-flex align-items-center align-content-center" method="GET" action="{{ route('presences.reports') }}">
                             <h4 class="me-2 fs-10">Du</h4>
-                            <input type="date" class="form-control form-control-sm">
+                            <input type="date" name="date_debut" class="form-control form-control-sm">
                             <h4 class="mx-2 fs-10">Au</h4>
-                            <input type="date" class="form-control form-control-sm">
-                        </div>
+                            <input type="date" name="date_fin" class="form-control form-control-sm me-2">
+                            <button type="submit" class="btn btn-primary btn-sm">Filtrer</button>
+                        </form>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive overflow-x-hidden">
                             <table class="table text-nowrap dt-responsive overflow-x-hidden" id="reports_table">
                                 <thead>
                                     <tr>
+                                        <th>Date</th>
                                         <th>Matricule</th>
-                                        <th>Nom</th>
+                                         <th>Nom</th>
                                         <th>Post-nom</th>
                                         <th>Prénom</th>
                                         <th>Genre</th>
@@ -55,13 +57,16 @@
                                         <th>Status</th>
                                     </tr>
                                 </thead>
+                                 @foreach ($reports as $report)
+                                <thead>
+                                    <th class="text-primary">
+                                        <i class="bx bx-calendar"></i> {{ $report['date'] }}
+                                    </th>
+                                </thead>
                                 <tbody>
-                                    @foreach ($reports as $report)
-                                        <tr class="bg-blue-transparent">
-                                            <td colspan="9" class="text-center font-weight-bold">Date: {{ $report['date'] }}</td>
-                                        </tr>
                                         @foreach ($report['agents'] as $agent)
                                             <tr>
+                                                <td>{{ $report['date'] }}</td>
                                                 <td>{{ $agent['agent_matricule'] }}</td>
                                                 <td>{{ $agent['agent_nom'] }}</td>
                                                 <td>{{ $agent['agent_postnom'] }}</td>
@@ -73,8 +78,8 @@
                                                 <td>{{ $agent['status'] }}</td>
                                             </tr>
                                         @endforeach
-                                    @endforeach
                                 </tbody>
+                                @endforeach
                             </table>
                         </div>
                     </div>

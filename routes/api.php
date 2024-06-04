@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/presence.pointage/{agentId}',[\App\Http\Controllers\PresenceController::class, 'pointagePresence']);
+Route::get('/presences.reports',[\App\Http\Controllers\PresenceController::class, 'generateReports']);
 
 Route::get('/agents/{directionId}', function(int $directionId){
     $agents=Agent::with('direction')->where('direction_id', $directionId)

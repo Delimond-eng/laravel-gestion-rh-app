@@ -256,12 +256,10 @@ class PresenceController extends Controller
     public function generateReports(Request $request): JsonResponse
     {
         $filters = $request->query();
-
         $dateDebut = $filters['date_debut'] ?? null;
         $dateFin = $filters['date_fin'] ?? null;
         $holidaysService = new HolidaysService();
         $presenceReportService = new PresenceReportService($holidaysService);
-
         $ministereId = $filters['ministere_id'] ?? null;
         $secretariatId = $filters['secretariat_id'] ?? null;
         $directionId = $filters['direction_id'] ?? null;
@@ -303,7 +301,6 @@ class PresenceController extends Controller
             "reports" => $report
         ]);
     }
-
     public function viewReports(Request $request){
         $filters = $request->query();
         $dateDebut = $filters['date_debut'] ?? null;
@@ -311,29 +308,11 @@ class PresenceController extends Controller
         $holidaysService = new HolidaysService();
         $presenceReportService = new PresenceReportService($holidaysService);
 
-        $ministereId = $filters['ministere_id'] ?? null;
-        $secretariatId = $filters['secretariat_id'] ?? null;
-        $directionId = $filters['direction_id'] ?? null;
-        $divisionId = $filters['division_id'] ?? null;
-        $bureauId = $filters['bureau_id'] ?? null;
-
+        $user = Auth::user();
         $filterArray = [];
-        if ($ministereId) {
-            $filterArray['ministere_id'] = $ministereId;
+        if($user->role  !== 'superadmin'){
+            $filterArray[''.$user->role_key.''] = $user->role_key_id;
         }
-        if ($secretariatId) {
-            $filterArray['secretariat_id'] = $secretariatId;
-        }
-        if ($directionId) {
-            $filterArray['direction_id'] = $directionId;
-        }
-        if ($divisionId) {
-            $filterArray['division_id'] = $divisionId;
-        }
-        if ($bureauId) {
-            $filterArray['bureau_id'] = $bureauId;
-        }
-
         $report = [];
         if ($dateDebut && $dateFin) {
             // Generate report for an interval with filters
